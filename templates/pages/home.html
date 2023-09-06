@@ -1,0 +1,21 @@
+
+<!-- This page is extends from main.html -->
+{% extends 'main.html' %}
+{% load static %}
+
+<!-- Page headers -->
+{% block head %}
+{% endblock %}
+<!-- // -->
+
+
+<!-- Page Content -->
+{% block content %}
+<center>
+    <img width="100" src="{% static 'images/logo.png' %}">
+    <br>
+    <br>
+    <h2>Welcome back {{request.user.first_name}}!</h2>
+</center>
+{% endblock %}
+<!-- // -->

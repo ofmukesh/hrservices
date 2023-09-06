@@ -1,0 +1,109 @@
+/* ----------------------Common CSS------------------- */
+
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    background-color: whitesmoke;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+}
+
+input {
+    padding: 10px;
+    outline: none;
+    background-color: #9191911f;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 15px;
+}
+
+.form-control:focus {
+    box-shadow: none !important;
+    border-color: none !important;
+}
+
+.input-group .btn {
+    z-index: 0 !important;
+}
+
+
+
+/* ------------------------------------------------- */
+
+nav,
+.sidenav {
+    background-color: #084b6d !important;
+    color: white !important;
+}
+
+nav {
+    height: 7vh;
+}
+
+main {
+    height: 92.9vh;
+    transition: margin-left .4s;
+    margin-top: 7px;
+    padding: 16px;
+    margin-left: 260px;
+    overflow-y: scroll;
+}
+
+.sidenav {
+    width: 250px;
+    height: 92.9vh;
+    position: absolute;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 10px;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    right: 10px;
+}
+
+.sidenav_items:hover> :not(.sidenav_items .item:hover) {
+    transition: 300ms;
+    filter: blur(1px);
+    transform: scale(0.95, 0.95);
+}
+
+.sidenav ._profile_btn {
+    margin-top: 50vh;
+    width: 99%;
+}
+
+.sidenav ._wallet_btn{
+    margin-top: 1vh;
+    width: 99%;
+}
+
+.sidenav ._logout_btn {
+    margin-top: 1vh;
+    width: 99%;
+}
+
+@media only screen and (max-width: 600px) {
+    .sidenav {
+        width: 0;
+        z-index: 2 !important;
+        border-right: 1px solid #d4d4d4;
+    }
+
+    main {
+        margin-left: 4px;
+    }
+}

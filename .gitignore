@@ -1,0 +1,10 @@
+# ignored files
+\.env
+db.sqlite3
+
+
+# ignored folders
+env
+media
+\migrations
+\__pycache__

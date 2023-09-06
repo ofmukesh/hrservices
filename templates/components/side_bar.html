@@ -1,0 +1,30 @@
+<div id="mySidenav" class="sidenav">
+    <div class="items">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            PAN
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'home' %}>FIND PAN</a></li>
+        </ul>
+    </div>
+
+    <div class="items">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            VOTER
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'home' %}>FIND VOTER</a></li>
+        </ul>
+    </div>
+
+   
+    <a href={% url 'home' %}>
+        <button class="btn btn-danger _profile_btn">Profile</button>
+    </a>
+    <a href={% url 'home' %}>
+        <button class="btn btn-primary _wallet_btn">Wallet</button>
+    </a>
+    <a href="/auth/logout/">
+        <button class="btn btn-warning _logout_btn">Logout</button>
+    </a>
+</div>
