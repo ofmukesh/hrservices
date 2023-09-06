@@ -9,8 +9,8 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Pan no.</th>
-                <th scope="col">Aadhar no.</th>
+                <th scope="col">DL no.</th>
+                <th scope="col">Name as per DL</th>
                 <th scope="col">Date of Birth</th>
                 <th scope="col">PDF</th>
                 <th scope="col">Status</th>
@@ -20,12 +20,13 @@
             {% for record in records %}
             <tr>
                 <th scope="row">{{record.id}}</th>
-                <td>{{record.pan_no}}</td>
-                <td>{{record.aadhar_no}}</td>
+                <td>{{record.dl_no}}</td>
+                <td>{{record.name_as_per_dl}}</td>
                 <td>{{record.date_of_birth}}</td>
                 <td>{% if record.file%}
                     <a target="_blank" href="/media/{{record.file}}">download</a>
-                    {%endif%}</td>
+                    {%endif%}
+                </td>
                 <td>{{record.status}}</td>
             </tr>
             {% endfor %}

@@ -1,0 +1,26 @@
+<!-- This page is extends from main.html -->
+{% extends 'service_form_base.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block form %}
+<div class="card mb-4">
+    <div class="card-header py-3 bg_theme">
+        <h6 class="m-0 font-weight-bold text-white text-center">SEARCH DL NUMBER</h6>
+    </div><br>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {{form}}
+            <div class="charge">
+                <label>Charges</label>
+                <input class="form-control" type="text" value="Processing Fee ₹{{service.charge}}" readonly disabled>
+            </div>
+            <div class="mt-2 text-end">
+                <button class="btn bg_theme text-light " type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+<!-- // -->

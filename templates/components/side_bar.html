@@ -13,6 +13,18 @@
 
     <div class="items">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            DL
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'find_dl' %}>FIND DL</a></li>
+            <li><a class="dropdown-item" href={% url 'pdf_dl' %}>DL PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_records' %}>FIND DL LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_pdf_records' %}>DL PDF LIST</a></li>
+        </ul>
+    </div>
+
+    <div class="items">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
             VOTER
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">

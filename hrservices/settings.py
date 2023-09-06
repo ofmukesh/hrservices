@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'accounts',
     'services',
     'pan_service',
+    'dl_service',
 ]
 
 # REST_FRAMEWORK
