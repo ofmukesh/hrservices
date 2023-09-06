@@ -27,6 +27,8 @@ class NsdlPanFindView(LoginRequiredMixin, View):
             form.save()  # saving the data
             AccountView().debit_money(request, service.charge)
             request.msg="Successfully submitted!"
+        else:
+            request.err="Something went wrong!"
         return self.get(request)
 
 
@@ -50,4 +52,6 @@ class PanPdfView(LoginRequiredMixin, View):
             form.save()  # saving the data
             AccountView().debit_money(request, service.charge)
             request.msg="Successfully submitted!"
+        else:
+            request.err="Something went wrong!"
         return self.get(request)
