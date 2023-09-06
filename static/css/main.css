@@ -53,7 +53,6 @@ nav {
 }
 
 main {
-    height: 92.9vh;
     transition: margin-left .4s;
     margin-top: 7px;
     padding: 16px;
@@ -63,7 +62,7 @@ main {
 
 .sidenav {
     width: 250px;
-    height: 92.9vh;
+    height: 93vh;
     position: absolute;
     overflow-x: hidden;
     transition: 0.4s;
