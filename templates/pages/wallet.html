@@ -1,0 +1,22 @@
+<!-- This page is extends from main.html -->
+{% extends 'main.html' %}
+{% load static %}
+
+<!-- Page headers -->
+{% block head %}
+{% endblock %}
+<!-- // -->
+
+
+<!-- Page Content -->
+{% block content %}
+<div class="container text-center">
+    {% if balance == 0 %}
+    {% include 'components/balance_err.html' %}
+    {% endif %}
+    <br>
+    <h3 class="text-secondary">Total balance</h3>
+    <h1>₹ {{balance}}</h1>
+</div>
+{% endblock %}
+<!-- // -->

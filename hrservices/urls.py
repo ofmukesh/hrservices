@@ -4,14 +4,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from home.views import HomeView
 from django.contrib.auth.views import LoginView
+from accounts.views import ProfileView, WalletView
 
 urlpatterns = [
-    # web paths
     path('', HomeView.as_view(), name='home'),
-
-    # auth paths
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('wallet/', WalletView.as_view(), name='wallet'),
     path('auth/login/', LoginView.as_view(template_name="pages/login.html",
-                                     redirect_authenticated_user=True), name='login'),
+                                          redirect_authenticated_user=True), name='login'),
     path('auth/', include('rest_framework.urls')),
 
     # admin paths

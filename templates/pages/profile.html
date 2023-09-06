@@ -10,28 +10,29 @@
 
 <!-- Page Content -->
 {% block content %}
-<div class="container">
+<center>
+    {% if ac.balance == 0 %}
+    {% include 'components/balance_err.html' %}
+    {% endif %}
     <h1>User Profile</h1>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Account ID</th>
-                <td>{{ ac.ac_id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ ac.user.first_name }} {{ ac.user.last_name }}</td>
-            </tr>
-            <tr>
-                <th>Contact No.</th>
-                <td>{{ ac.contact_no }}</td>
-            </tr>
-            <tr>
-                <th>Balance</th>
-                <td>{{ ac.balance }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="w-75">
+        <div class="row m-3 border-bottom">
+            <div class="col-6"><b>Account ID</b></div>
+            <div class="col-6">{{ ac.id }}</div>
+        </div>
+        <div class="row m-3 border-bottom">
+            <div class="col-6"><b>Name</b></div>
+            <div class="col-6">{{ ac.user.first_name }} {{ ac.user.last_name }}</div>
+        </div>
+        <div class="row m-3 border-bottom">
+            <div class="col-6"><b>Contact No.</b></div>
+            <div class="col-6">{{ ac.contact_no }}</div>
+        </div>
+    </div>
+
+    <a href="/auth/logout/">
+        <button class="btn mt-2 btn-warning _logout_btn">Logout</button>
+    </a>
+</center>
 {% endblock %}
 <!-- // -->
