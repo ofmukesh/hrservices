@@ -9,6 +9,7 @@ from accounts.views import ProfileView, WalletView
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('profile/', ProfileView.as_view(), name='profile'),
+    path('services/', include('services.urls')),
     path('wallet/', WalletView.as_view(), name='wallet'),
     path('auth/login/', LoginView.as_view(template_name="pages/login.html",
                                           redirect_authenticated_user=True), name='login'),

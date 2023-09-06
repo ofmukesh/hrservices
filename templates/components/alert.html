@@ -1,0 +1,6 @@
+{% if request.err %}
+{% include 'components/fail_alert.html' %}
+{% endif %}
+{% if request.msg %}
+{% include 'components/success_alert.html' %}
+{% endif %}

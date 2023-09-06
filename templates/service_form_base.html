@@ -1,0 +1,19 @@
+<!-- This page is extends from main.html -->
+{% extends 'main.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="container-fluid">
+    {% include 'components/alert.html' %}
+    {% if not service.isActive %}
+    <center>
+        <b class="text-danger">Sorry this service is not active currently :(</b>
+    </center>
+    {% else %}
+    {% block form %}
+    {% endblock %}
+    {% endif %}
+</div>
+{% endblock %}
+<!-- // -->

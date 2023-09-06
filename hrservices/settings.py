@@ -29,9 +29,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     "corsheaders",
-    
+
     # other apps
     'accounts',
+    'services',
+    'pan_service',
 ]
 
 # REST_FRAMEWORK
@@ -144,6 +146,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom Settings
 PROJECT_NAME = 'TopIndiaServices'
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 
 # AUTH SETTINGS

@@ -38,6 +38,14 @@ input {
     z-index: 0 !important;
 }
 
+.color_theme {
+    background-color: #084b6d !important;
+}
+
+.bg_theme {
+    background-color: #084b6d !important;
+}
+
 
 
 /* ------------------------------------------------- */
@@ -85,7 +93,7 @@ main {
     width: 99%;
 }
 
-.sidenav ._wallet_btn{
+.sidenav ._wallet_btn {
     margin-top: 1vh;
     width: 99%;
 }
