@@ -4,8 +4,10 @@
             PAN
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'find_nsdl_pan' %}>FIND PAN</a></li>
+            <li><a class="dropdown-item" href={% url 'find_nsdl_pan' %}>NSDL FIND PAN</a></li>
             <li><a class="dropdown-item" href={% url 'pdf_pan' %}>PAN PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'nsdl_pan_records' %}>NSDL FIND PAN LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'pan_pdf_records' %}>PAN PDF LIST</a></li>
         </ul>
     </div>
 

@@ -1,0 +1,19 @@
+<!-- This page is extends from main.html -->
+{% extends 'main.html' %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="container-fluid">
+    <div class="card mb-4">
+        <div class="card-header py-3 bg_theme">
+            <h6 class="m-0 font-weight-bold text-white text-center">{{table_title}}</h6>
+        </div><br>
+        <div class="card-body">
+            {% block table %}
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+<!-- // -->

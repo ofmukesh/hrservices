@@ -5,6 +5,7 @@ from .forms import NsdlPanFindForm, PanPdfForm
 from accounts.views import AccountView
 from services.views import ServiceView
 from utils.common import low_balance_err
+from .models import Nsdlpanfind,Panpdf
 
 
 class NsdlPanFindView(LoginRequiredMixin, View):
@@ -26,9 +27,9 @@ class NsdlPanFindView(LoginRequiredMixin, View):
         elif form.is_valid():
             form.save()  # saving the data
             AccountView().debit_money(request, service.charge)
-            request.msg="Successfully submitted!"
+            request.msg = "Successfully submitted!"
         else:
-            request.err="Something went wrong!"
+            request.err = "Something went wrong!"
         return self.get(request)
 
 
@@ -51,7 +52,32 @@ class PanPdfView(LoginRequiredMixin, View):
         elif form.is_valid():
             form.save()  # saving the data
             AccountView().debit_money(request, service.charge)
-            request.msg="Successfully submitted!"
+            request.msg = "Successfully submitted!"
         else:
-            request.err="Something went wrong!"
+            request.err = "Something went wrong!"
         return self.get(request)
+
+
+class NsdlPanFindRecordView(View):
+    def get(self, request):
+        ac = AccountView().get_account(request)
+        records = Nsdlpanfind.objects.filter(account=ac)
+        context = {
+            'title': 'NSDL | PAN Number Find Record',
+            'records': records,
+            'table_title': 'NSDL | PAN Number Find Record'
+        }
+        return render(request, 'services/pan/nsdl_records.html', context=context)
+
+
+
+class PanPdfRecordView(View):
+    def get(self, request):
+        ac = AccountView().get_account(request)
+        records = Panpdf.objects.filter(account=ac)
+        context = {
+            'title': 'Pancard PDF Record',
+            'records': records,
+            'table_title': 'Pancard PDF Record'
+        }
+        return render(request, 'services/pan/pdf_records.html', context=context)
