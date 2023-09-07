@@ -4,6 +4,11 @@ from .models import Aadharfind, Aadharpdf
 
 
 class AadharFindForm(forms.ModelForm):
+    date = forms.DateField(
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd-mm-yyyy)')
+    time = forms.TimeField(
+        input_formats=settings.DATE_INPUT_FORMATS, label='Time (Hours:Minutes:Seconds)')
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # adding css class to form fields
@@ -17,6 +22,11 @@ class AadharFindForm(forms.ModelForm):
 
 
 class AadharPdfForm(forms.ModelForm):
+    date = forms.DateField(
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd-mm-yyyy)')
+    time = forms.TimeField(
+        input_formats=settings.DATE_INPUT_FORMATS, label='Time (Hours:Minutes:Seconds)')
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # adding css class to form fields
