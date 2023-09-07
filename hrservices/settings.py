@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'services',
     'pan_service',
     'dl_service',
+    'voter_service',
 ]
 
 # REST_FRAMEWORK
