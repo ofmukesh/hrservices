@@ -1,0 +1,37 @@
+<!-- This page is extends from main.html -->
+{% extends 'record_base.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block table %}
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">DL no.</th>
+                <th scope="col">Name as per DL</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">PDF</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <th scope="row">{{record.id}}</th>
+                <td>{{record.dl_no}}</td>
+                <td>{{record.name_as_per_dl}}</td>
+                <td>{{record.date_of_birth}}</td>
+                <td>{% if record.file%}
+                    <a target="_blank" href="/media/{{record.file}}">download</a>
+                    {%endif%}
+                </td>
+                <td>{{record.status}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+<!-- // -->

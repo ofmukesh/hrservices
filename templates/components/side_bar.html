@@ -33,6 +33,18 @@
         </ul>
     </div>
 
+    <div class="items">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            AADHAR
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'find_aadhar' %}>FIND AADHAR</a></li>
+            <li><a class="dropdown-item" href={% url 'pdf_aadhar' %}>AADHAR PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_records' %}>FIND AADHAR LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_pdf_records' %}>AADHAR PDF LIST</a></li>
+        </ul>
+    </div>
+
    
     <a href={% url 'profile' %}>
         <button class="btn btn-danger _profile_btn">Profile</button>
