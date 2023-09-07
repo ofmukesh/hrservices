@@ -15,6 +15,12 @@ VoterTypeChoices = [
     ('older',4),
 ]
 
+GenderChoices = [
+    ('MALE','MALE'),
+    ('FEMALE','FEMALE'),
+    ('OTHER','OTHER'),
+]
+
 StateChoices = [
     ('AP', 'Andhra Pradesh'),
     ('AR', 'Arunachal Pradesh'),

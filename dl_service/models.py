@@ -1,6 +1,5 @@
 from django.db import models
 from utils.choices import StateChoices, StatusChoices
-from utils.common import generate_uuid_with_prefix
 
 
 class Dlfind(models.Model):

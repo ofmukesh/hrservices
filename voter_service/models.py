@@ -1,6 +1,5 @@
 from django.db import models
 from utils.choices import StatusChoices,VoterTypeChoices
-from utils.common import generate_uuid_with_prefix
 
 
 class Voterpdf(models.Model):

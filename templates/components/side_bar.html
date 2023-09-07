@@ -21,21 +21,21 @@
 
     <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            FIND DL
-        </button>
-        <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'find_dl' %}>New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'dl_records' %}>DL List</a></li>
-        </ul>
-    </div>
-
-    <div class="items mt-1">
-        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
             DL PDF
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'pdf_dl' %}>New apply</a></li>
             <li><a class="dropdown-item" href={% url 'dl_pdf_records' %}>PDF List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            FIND DL
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'find_dl' %}>New apply</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_records' %}>DL List</a></li>
         </ul>
     </div>
 
@@ -66,6 +66,16 @@
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'pdf_aadhar' %}>New apply</a></li>
             <li><a class="dropdown-item" href={% url 'aadhar_pdf_records' %}>PDF List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            COVID
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'covid' %}>New apply</a></li>
+            <li><a class="dropdown-item" href={% url 'covid_records' %}>Covid List</a></li>
         </ul>
     </div>
 
