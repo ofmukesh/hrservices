@@ -1,7 +1,7 @@
 import uuid
 
 def generate_uuid_with_prefix(prefix):
-    return prefix+uuid.uuid4().hex[:6]
+    return prefix+uuid.uuid4().hex[:10].upper()
 
 def generate_uuid():
     return uuid.uuid4()
