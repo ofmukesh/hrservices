@@ -1,51 +1,76 @@
 <div id="mySidenav" class="sidenav">
-    <div class="items">
+    <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            PAN
+            PAN Find
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'find_nsdl_pan' %}>NSDL FIND PAN</a></li>
-            <li><a class="dropdown-item" href={% url 'pdf_pan' %}>PAN PDF</a></li>
-            <li><a class="dropdown-item" href={% url 'nsdl_pan_records' %}>NSDL FIND PAN LIST</a></li>
-            <li><a class="dropdown-item" href={% url 'pan_pdf_records' %}>PAN PDF LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'find_nsdl_pan' %}>PAN FIND</a></li>
+            <li><a class="dropdown-item" href={% url 'nsdl_pan_records' %}>PAN FIND LIST</a></li>
         </ul>
     </div>
 
-    <div class="items">
+    <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            DL
+            PAN PDF
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'pdf_pan' %}>PAN PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'pan_pdf_records' %}>PAN PDF List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            FIND DL
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'find_dl' %}>FIND DL</a></li>
-            <li><a class="dropdown-item" href={% url 'pdf_dl' %}>DL PDF</a></li>
-            <li><a class="dropdown-item" href={% url 'dl_records' %}>FIND DL LIST</a></li>
-            <li><a class="dropdown-item" href={% url 'dl_pdf_records' %}>DL PDF LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_records' %}>Find DL List</a></li>
         </ul>
     </div>
 
-    <div class="items">
+    <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            VOTER
+            DL PDF
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'pdf_dl' %}>DL PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_pdf_records' %}>DL PDF List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            VOTER PDF
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'pdf_voter' %}>VOTER PDF</a></li>
-            <li><a class="dropdown-item" href={% url 'voter_pdf_records' %}>VOTER PDF LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'voter_pdf_records' %}>Voter PDF List</a></li>
         </ul>
     </div>
 
-    <div class="items">
+    <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            AADHAR
+            AADHAR NO
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'find_aadhar' %}>FIND AADHAR</a></li>
-            <li><a class="dropdown-item" href={% url 'pdf_aadhar' %}>AADHAR PDF</a></li>
-            <li><a class="dropdown-item" href={% url 'aadhar_records' %}>FIND AADHAR LIST</a></li>
-            <li><a class="dropdown-item" href={% url 'aadhar_pdf_records' %}>AADHAR PDF LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'find_aadhar' %}>EID to Find Aadhar</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_records' %}>Find Aadhar List</a></li>
         </ul>
     </div>
 
-   
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            AADHAR PDF
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'pdf_aadhar' %}>EID to Aadhar PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_pdf_records' %}>Aadhar PDF List</a></li>
+        </ul>
+    </div>
+
+
+
     <a href={% url 'profile' %}>
         <button class="btn btn-danger _profile_btn">Profile</button>
     </a>
