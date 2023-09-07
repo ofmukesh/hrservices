@@ -8,6 +8,13 @@ StatusChoices = [
     ('rejected', 'rejected'),
 ]
 
+VoterTypeChoices = [
+    ('new',1),
+    ('old new',2),
+    ('old',3),
+    ('older',4),
+]
+
 StateChoices = [
     ('AP', 'Andhra Pradesh'),
     ('AR', 'Arunachal Pradesh'),

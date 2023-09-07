@@ -11,4 +11,4 @@ class VoterPdfForm(forms.ModelForm):
 
     class Meta:
         model = Voterpdf
-        fields = ['epic_no', 'name_as_voter']
+        fields = ['epic_no', 'name_as_voter','voter_type']
