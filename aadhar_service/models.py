@@ -4,8 +4,6 @@ from utils.common import generate_uuid_with_prefix
 
 
 class Aadharfind(models.Model):
-    id = models.CharField(
-        max_length=255, default=generate_uuid_with_prefix('FINDAADHAR'), primary_key=True, editable=False)
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     name = models.CharField(max_length=255, blank=False, null=False)
@@ -19,8 +17,6 @@ class Aadharfind(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
 class Aadharpdf(models.Model):
-    id = models.CharField(
-        max_length=255, default=generate_uuid_with_prefix('AADHARPDF'), primary_key=True, editable=False)
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     name = models.CharField(max_length=255, blank=False, null=False)

@@ -4,8 +4,6 @@ from utils.common import generate_uuid_with_prefix
 
 
 class Voterpdf(models.Model):
-    id = models.CharField(
-        max_length=255, default=generate_uuid_with_prefix('VOTERPDF'), primary_key=True, editable=False)
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     epic_no = models.CharField(max_length=15, blank=False, null=False)
