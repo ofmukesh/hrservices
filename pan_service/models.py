@@ -6,7 +6,7 @@ from utils.common import generate_uuid_with_prefix
 class Nsdlpanfind(models.Model):
     id = models.CharField(
         max_length=255, default=generate_uuid_with_prefix('FINDPAN'), primary_key=True, editable=False)
-    account = models.OneToOneField(
+    account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     aadhar_no = models.CharField(max_length=12, blank=False, null=False)
     name_as_pan = models.CharField(max_length=255, blank=False, null=False)
@@ -21,7 +21,7 @@ class Nsdlpanfind(models.Model):
 class Panpdf(models.Model):
     id = models.CharField(
         max_length=255, default=generate_uuid_with_prefix('PDFPAN'), primary_key=True, editable=False)
-    account = models.OneToOneField(
+    account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     pan_no = models.CharField(max_length=10, blank=False, null=False)
     aadhar_no = models.CharField(max_length=12, blank=False, null=False)

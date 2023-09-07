@@ -6,7 +6,7 @@ from utils.common import generate_uuid_with_prefix
 class Dlfind(models.Model):
     id = models.CharField(
         max_length=255, default=generate_uuid_with_prefix('FINDDL'), primary_key=True, editable=False)
-    account = models.OneToOneField(
+    account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     name = models.CharField(max_length=255, blank=False, null=False)
     father_name = models.CharField(max_length=255, blank=False, null=False)
@@ -22,7 +22,7 @@ class Dlfind(models.Model):
 class Dlpdf(models.Model):
     id = models.CharField(
         max_length=255, default=generate_uuid_with_prefix('DLPDF'), primary_key=True, editable=False)
-    account = models.OneToOneField(
+    account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     dl_no = models.CharField(max_length=16, blank=False, null=False)
     name_as_per_dl = models.CharField(max_length=255, blank=False, null=False)
