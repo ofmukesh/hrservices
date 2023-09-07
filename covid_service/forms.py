@@ -12,6 +12,10 @@ class CovidForm(forms.ModelForm):
             visible.field.widget.attrs['class'] = 'form-control'
             visible.field.widget.attrs['placeholder'] = visible.field.label
 
+        self.fields['aadhar_no'].widget.attrs['placeholder'] = "Enter parameter"
     class Meta:
         model = Covid
         fields = ['name', 'mobile_no','aadhar_no','date_of_birth','gender']
+        labels = {
+        "aadhar_no": "Aadhar No/Passport No"
+    }
