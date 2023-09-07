@@ -4,12 +4,11 @@
 
 <!-- Page Content -->
 {% block table %}
-<div class="container-fluid">
+<div class="container-fluid record_table">
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Name as Pan</th>
                 <th scope="col">Aadhar no.</th>
                 <th scope="col">Date of Birth</th>
                 <th scope="col">Pan no.</th>
@@ -20,7 +19,6 @@
             {% for record in records %}
             <tr>
                 <th scope="row">{{record.id}}</th>
-                <td>{{record.name_as_pan}}</td>
                 <td>{{record.aadhar_no}}</td>
                 <td>{{record.date_of_birth}}</td>
                 <td>{{record.pan_no}}</td>

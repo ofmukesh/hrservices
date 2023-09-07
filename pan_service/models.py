@@ -3,13 +3,12 @@ from utils.choices import StatusChoices
 from utils.common import generate_uuid_with_prefix
 
 
-class Nsdlpanfind(models.Model):
+class Panfind(models.Model):
     id = models.CharField(
         max_length=255, default=generate_uuid_with_prefix('FINDPAN'), primary_key=True, editable=False)
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     aadhar_no = models.CharField(max_length=12, blank=False, null=False)
-    name_as_pan = models.CharField(max_length=255, blank=False, null=False)
     pan_no = models.CharField(max_length=255, default='', blank=True)
     date_of_birth = models.DateField()
     status = models.CharField(choices=StatusChoices,

@@ -5,9 +5,9 @@ from .models import Aadharfind, Aadharpdf
 
 class AadharFindForm(forms.ModelForm):
     date = forms.DateField(
-        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd-mm-yyyy)')
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd/mm/yyyy)')
     time = forms.TimeField(
-        input_formats=settings.DATE_INPUT_FORMATS, label='Time (Hours:Minutes:Seconds)')
+        input_formats=settings.TIME_INPUT_FORMATS, label='Time (Hours:Minutes:Seconds)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,9 +23,9 @@ class AadharFindForm(forms.ModelForm):
 
 class AadharPdfForm(forms.ModelForm):
     date = forms.DateField(
-        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd-mm-yyyy)')
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd/mm/yyyy)')
     time = forms.TimeField(
-        input_formats=settings.DATE_INPUT_FORMATS, label='Time (Hours:Minutes:Seconds)')
+        input_formats=settings.TIME_INPUT_FORMATS, label='Time (Hours:Minutes:Seconds)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

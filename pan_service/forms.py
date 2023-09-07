@@ -1,9 +1,9 @@
 from django import forms
 from django.conf import settings
-from .models import Nsdlpanfind,Panpdf
+from .models import Panfind,Panpdf
 
-class NsdlPanFindForm(forms.ModelForm):
-    date_of_birth = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS,label='Date of Birth (dd-mm-yyyy)')
+class PanFindForm(forms.ModelForm):
+    date_of_birth = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS,label='Date of Birth (dd/mm/yyyy)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -12,12 +12,12 @@ class NsdlPanFindForm(forms.ModelForm):
             visible.field.widget.attrs['class'] = 'form-control'
             visible.field.widget.attrs['placeholder'] = visible.field.label
     class Meta:
-        model = Nsdlpanfind
-        fields = ['aadhar_no', 'name_as_pan', 'date_of_birth']
+        model = Panfind
+        fields = ['aadhar_no', 'date_of_birth']
 
 
 class PanPdfForm(forms.ModelForm):
-    date_of_birth = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS,label='Date of Birth (dd-mm-yyyy)')
+    date_of_birth = forms.DateField(input_formats=settings.DATE_INPUT_FORMATS,label='Date of Birth (dd/mm/yyyy)')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

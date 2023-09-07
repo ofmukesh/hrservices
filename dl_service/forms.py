@@ -5,7 +5,7 @@ from .models import Dlfind, Dlpdf
 
 class DlFindForm(forms.ModelForm):
     date_of_birth = forms.DateField(
-        input_formats=settings.DATE_INPUT_FORMATS, label='Date of Birth (dd-mm-yyyy)')
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date of Birth (dd/mm/yyyy)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -21,7 +21,7 @@ class DlFindForm(forms.ModelForm):
 
 class DlPdfForm(forms.ModelForm):
     date_of_birth = forms.DateField(
-        input_formats=settings.DATE_INPUT_FORMATS, label='Date of Birth (dd-mm-yyyy)')
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date of Birth (dd/mm/yyyy)')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

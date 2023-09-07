@@ -113,3 +113,8 @@ main {
         margin-left: 4px;
     }
 }
+
+/* records */
+.record_table {
+    overflow-x: scroll;
+}

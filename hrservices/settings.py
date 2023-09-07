@@ -149,8 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom Settings
 PROJECT_NAME = 'TopIndiaServices'
-DATE_INPUT_FORMATS = ['%H:%M:%S']
-TIME_INPUT_FORMATS = ['%d-%m-%Y']
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
+TIME_INPUT_FORMATS = ['%h:%m:%s']
 
 
 # AUTH SETTINGS
