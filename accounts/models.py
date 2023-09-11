@@ -8,6 +8,3 @@ class Account(models.Model):
     contact_no = models.CharField(max_length=10, null=False, blank=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.id
