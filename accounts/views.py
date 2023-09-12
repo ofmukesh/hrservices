@@ -46,5 +46,6 @@ class WalletView(LoginRequiredMixin, View):
 class TransactionsView():
     def add_record(self,request,charge):
         ac = AccountView().get_account(request)
-        new=Transactions.objects.create(ac=ac,charged=charge,balance=ac.balance).save()
+        new=Transactions.objects.create(ac=ac,charged=charge,balance=ac.balance)
+        new.save()
         return new
