@@ -29,7 +29,7 @@ class AadharPdfAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         aadhar=Aadharpdf.objects.get(id=obj.id)
-        if aadhar.status=='pending'  and obj.status=='rejected':
+        if (aadhar.status=='pending' or aadhar.status=='success') and obj.status=='rejected':
             AccountView().reverse_money(request,aadhar.tid_id)
         if aadhar.status=='rejected'  and obj.status=='success':
             AccountView().debit_money(request,aadhar.tid.charged)

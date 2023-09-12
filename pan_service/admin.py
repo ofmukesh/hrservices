@@ -12,7 +12,7 @@ class PanFindAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         pan=Panfind.objects.get(id=obj.id)
-        if pan.status=='pending'  and obj.status=='rejected':
+        if (pan.status=='pending' or pan.status=='success')  and obj.status=='rejected':
             AccountView().reverse_money(request,pan.tid_id)
         if pan.status=='rejected'  and obj.status=='success':
             AccountView().debit_money(request,pan.tid.charged)
@@ -28,7 +28,7 @@ class PanPdfAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         pan=Panpdf.objects.get(id=obj.id)
-        if pan.status=='pending'  and obj.status=='rejected':
+        if (pan.status=='pending' or pan.status=='success') and obj.status=='rejected':
             AccountView().reverse_money(request,pan.tid_id)
         if pan.status=='rejected'  and obj.status=='success':
             AccountView().debit_money(request,pan.tid.charged)

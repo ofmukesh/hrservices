@@ -11,7 +11,7 @@ class VoterPdfAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         voter=Voterpdf.objects.get(id=obj.id)
-        if voter.status=='pending'  and obj.status=='rejected':
+        if (voter.status=='pending' or voter.status=='success')  and obj.status=='rejected':
             AccountView().reverse_money(request,voter.tid_id)
         if voter.status=='rejected'  and obj.status=='success':
             AccountView().debit_money(request,voter.tid.charged)
