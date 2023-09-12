@@ -10,7 +10,7 @@ class Account(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return self.contact_no
+        return str(self.contact_no)+f"( {self.user.first_name} {self.user.last_name} )"
     
 
 class Transactions(models.Model):
