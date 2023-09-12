@@ -5,7 +5,7 @@ from .models import Aadharpdf, Aadharfind
 @admin.register(Aadharfind)
 class AadharFindAdmin(admin.ModelAdmin):
     list_display = ['id', 'name',
-                    'enrollment_no', 'time', 'date', 'aadhar_no', 'status', 'account']
+                    'enrollment_no', 'time', 'date', 'aadhar_no', 'status', 'account','created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on','status']
     search_fields = ['id', 'name', 'enrollment_no', 'aadhar_no', 'account__contact_no']
 
@@ -13,6 +13,6 @@ class AadharFindAdmin(admin.ModelAdmin):
 @admin.register(Aadharpdf)
 class AadharPdfAdmin(admin.ModelAdmin):
     list_display = ['id', 'name',
-                    'enrollment_no', 'time', 'date', 'file', 'status', 'account']
+                    'enrollment_no', 'time', 'date', 'file', 'status', 'account','created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on','status']
     search_fields = ['id', 'name', 'enrollment_no', 'aadhar_no', 'account__contact_no']
