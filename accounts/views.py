@@ -16,7 +16,6 @@ class AccountView():
         ac.balance -= charge
         ac.save()
 
-
 class ProfileView(LoginRequiredMixin, View):
     def get(self, request):
         ac = AccountView().get_account(request)
@@ -35,3 +34,6 @@ class WalletView(LoginRequiredMixin, View):
             'title': 'Wallet'
         }
         return render(request, 'pages/wallet.html', context=context)
+
+
+# def reject_application(request):
