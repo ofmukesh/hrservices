@@ -5,7 +5,6 @@ from utils.services_api import aadhar_to_pan_api
 from .forms import VoterRegistrationForm
 from eng_hindi import eth
 
-
 class AdminView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         context = {
@@ -20,7 +19,7 @@ class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
         return render(request, 'admin/forms/voter_reg.html', context={'title': 'Covid', 'form': form})
 
     def post(self, request):
-        form = VoterRegistrationForm(request.POST)  # form data from request
+        form = VoterRegistrationForm(request.POST,request.FILES)  # form data from request
 
         if form.is_valid():
             data = form.cleaned_data
@@ -31,6 +30,7 @@ class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
             data['address1_hi'] =eth(data['address1'])
             data['address2_hi'] =eth(data['address2'])
             data['place_hi'] =eth(data['place'])
+            print(form['photo'])
             return render(request, 'admin/pages/old_voter.html', context={'title': 'Voter', 'data': data})
         else:
             print(form.errors)

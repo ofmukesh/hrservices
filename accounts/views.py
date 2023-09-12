@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Account
+from .models import Account,Transactions
 from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -14,6 +14,13 @@ class AccountView():
     def debit_money(self, request, charge):
         ac = self.get_account(request)
         ac.balance -= charge
+        ac.save()
+        return ac.balance
+    
+    def reverse_money(self, request, tid):
+        charge=Transactions.objects.get(id=tid).charged
+        ac = self.get_account(request)
+        ac.balance += charge
         ac.save()
 
 class ProfileView(LoginRequiredMixin, View):
@@ -36,4 +43,8 @@ class WalletView(LoginRequiredMixin, View):
         return render(request, 'pages/wallet.html', context=context)
 
 
-# def reject_application(request):
+class TransactionsView():
+    def add_record(self,request,charge):
+        ac = AccountView().get_account(request)
+        new=Transactions.objects.create(ac=ac,charged=charge,balance=ac.balance)
+        return new

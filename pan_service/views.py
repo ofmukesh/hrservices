@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from .forms import PanFindForm, PanPdfForm,AadharToPanForm
-from accounts.views import AccountView
+from accounts.views import AccountView,TransactionsView
 from services.views import ServiceView
 from utils.common import low_balance_err
 from .models import Panfind, Panpdf
@@ -26,8 +26,9 @@ class NsdlPanFindView(LoginRequiredMixin, View):
         elif service.charge > ac.balance:
             request.err = low_balance_err
         elif form.is_valid():
-            form.save()  # saving the data
             AccountView().debit_money(request, service.charge)
+            form.instance.tid=TransactionsView().add_record(request,service.charge)
+            form.save()  # saving the data
             request.msg = "Successfully submitted!"
         else:
             print(form.errors)
@@ -52,8 +53,9 @@ class PanPdfView(LoginRequiredMixin, View):
         elif service.charge > ac.balance:
             request.err = low_balance_err
         elif form.is_valid():
-            form.save()  # saving the data
             AccountView().debit_money(request, service.charge)
+            form.instance.tid=TransactionsView().add_record(request,service.charge)
+            form.save()  # saving the data
             request.msg = "Successfully submitted!"
         else:
             request.err = "Something went wrong!"

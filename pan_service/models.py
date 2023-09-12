@@ -10,6 +10,7 @@ class Panfind(models.Model):
     date_of_birth = models.DateField()
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -23,6 +24,7 @@ class Panpdf(models.Model):
     file = models.FileField(upload_to='pan_pdfs')
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -34,5 +36,6 @@ class AadharToPan(models.Model):
     pan_no = models.CharField(max_length=255, blank=False,null=False)
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

@@ -12,5 +12,6 @@ class Voterpdf(models.Model):
     file = models.FileField(upload_to='voter_files')
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

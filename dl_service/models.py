@@ -13,6 +13,7 @@ class Dlfind(models.Model):
     dl_no = models.CharField(max_length=16, blank=False, null=False)
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -25,5 +26,6 @@ class Dlpdf(models.Model):
     file = models.FileField(upload_to='dl_files')
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
