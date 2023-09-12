@@ -1,0 +1,198 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Phudu&display=swap');
+
+        body {
+            display: flex;
+            gap: 20px;
+        }
+
+        .front,
+        .back {
+            height: 500px;
+            width: 400px;
+        }
+
+        .front .format_img,
+        .back .format_img {
+            height: 500px;
+            width: 400px;
+        }
+
+        /* font styles */
+        .en {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+            font-weight: bold !important;
+            color: #443b37 !important;
+        }
+
+        .hi {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+            color: #443b37 !important;
+            word-spacing: 3px;
+        }
+
+        .voter_no {
+            text-transform: uppercase;
+            position: absolute;
+            top: 157px;
+            left: 251px;
+            font-size: 13px;
+            font-weight: bolder;
+        }
+
+        .name_en {
+            text-transform: uppercase;
+            position: absolute;
+            top: 348px;
+            left: 185px;
+        }
+
+        .name_hi {
+            position: absolute;
+            top: 369px;
+            left: 185px;
+        }
+
+        .parent_name_en {
+            text-transform: uppercase;
+            position: absolute;
+            top: 395px;
+            left: 185px;
+        }
+
+        .parent_name_hi {
+            position: absolute;
+            top: 419px;
+            left: 185px;
+        }
+
+        .gender {
+            position: absolute;
+            top: 444px;
+            font-size: 14px;
+            left: 188px;
+        }
+
+        .age_en {
+            position: absolute;
+            top: 469px;
+            font-size: 14px;
+            left: 188px;
+            word-spacing: 10px;
+        }
+
+        .age_hi {
+            position: absolute;
+            top: 490px;
+            font-size: 14px;
+            left: 188px;
+            word-spacing: 10px;
+        }
+
+        .profile {
+            position: absolute;
+            top: 175px;
+            left: 230px;
+            height: 170px;
+            width: 140px;
+            filter: grayscale(1) blur(0.50px) contrast(1.2) sepia(0.5);
+            -webkit-mask: radial-gradient(#000, #000a);
+        }
+
+        .address_en {
+            font-weight: normal !important;
+            text-transform: uppercase;
+            font-size: 14px;
+            position: absolute;
+            top: 25px;
+            left: 505px;
+            word-spacing: 3px;
+        }
+
+        .address_hi {
+            font-size: 13px;
+            position: absolute;
+            font-weight: bold;
+            top: 86px;
+            left: 505px;
+            word-spacing: 3px;
+        }
+
+        .place_en {
+            text-transform: uppercase;
+            font-size: 14px;
+            position: absolute;
+            top: 356px;
+            left: 478px;
+            word-spacing: 3px;
+        }
+
+        .place_hi {
+            font-size: 14px;
+            position: absolute;
+            top: 373px;
+            left: 478px;
+            word-spacing: 3px;
+        }
+
+        .date_en {
+            font-size: 14px;
+            position: absolute;
+            top: 359px;
+            left: 702px;
+            word-spacing: 3px;
+        }
+
+        .date_hi {
+            font-size: 15px;
+            position: absolute;
+            top: 375px;
+            left: 702px;
+            word-spacing: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="front">
+        <img class="format_img" src="{% static 'images/front.jpg' %}" alt="">
+        <div class="voter_no">{{data.voter_no}}</div>
+        <div class="name_en en">{{data.elector_name}}</div>
+        <div class="name_hi hi">{{data.elector_name_hi}}</div>
+        <div class="parent_name_en en">{{data.father_mother_husband_name}}</div>
+        <div class="parent_name_hi hi">{{data.father_mother_husband_name_hi}}</div>
+        <div class="gender">
+            <span class="en">{{data.sex}}</span>&nbsp;
+            <b>/</b>
+            <span class="hi">{{data.sex_hi}}</span>
+        </div>
+        <div class="age_en en">{{data.age}} Years</div>
+        <div class="age_hi hi">{{data.age}} वर्ष</div>
+        <img class="profile" src={photo} alt="">
+    </div>
+    <div class="back">
+        <img class="format_img" src="{% static 'images/back.jpg' %}" alt="">
+        <div class="address_en en">
+            <div class="address1">{{data.address1}}</div>
+            <div class="address2">{{data.address2}}</div>
+        </div>
+        <div class="address_hi hi">
+            <div class="address1">{{data.address1_hi}}</div>
+            <div class="address2">{{data.address2_hi}}</div>
+        </div>
+        <div class="place_en en">{{data.place}}</div>
+        <div class="place_hi hi">{{data.place_hi}}</div>
+        <div class="date_en en">{{data.date}}</div>
+        <div class="date_hi hi">{{data.date}}</div>
+    </div>
+</body>
+
+</html>

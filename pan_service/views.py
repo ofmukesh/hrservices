@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import PanFindForm, PanPdfForm
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from .forms import PanFindForm, PanPdfForm,AadharToPanForm
 from accounts.views import AccountView
 from services.views import ServiceView
 from utils.common import low_balance_err
-from .models import Panfind,Panpdf
+from .models import Panfind, Panpdf
+from utils.services_api import aadhar_to_pan_api
 
 
 class NsdlPanFindView(LoginRequiredMixin, View):
@@ -59,7 +60,7 @@ class PanPdfView(LoginRequiredMixin, View):
         return self.get(request)
 
 
-class NsdlPanFindRecordView(View):
+class NsdlPanFindRecordView(LoginRequiredMixin, View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Panfind.objects.filter(account=ac)
@@ -71,8 +72,7 @@ class NsdlPanFindRecordView(View):
         return render(request, 'services/pan/pan_records.html', context=context)
 
 
-
-class PanPdfRecordView(View):
+class PanPdfRecordView(LoginRequiredMixin, View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Panpdf.objects.filter(account=ac)
@@ -82,3 +82,25 @@ class PanPdfRecordView(View):
             'table_title': 'Pancard PDF Record'
         }
         return render(request, 'services/pan/pdf_records.html', context=context)
+
+
+# admin services
+class AadharToPanView(LoginRequiredMixin, AccessMixin, View):
+    def get(self, request):
+        form = AadharToPanForm()
+        return render(request, 'admin/pages/aadhar_to_pan.html', context={'title': 'Aadhar to Pan', 'form': form})
+
+    def post(self, request):
+        form = AadharToPanForm(request.POST)  # form data from request
+        ac = AccountView().get_account(request)
+        form.instance.account = ac
+        service = ServiceView().get_service_by_id('PAN_FIND')
+
+        if form.is_valid():
+            result=aadhar_to_pan_api(request,form.instance.aadhar_no)
+           
+            request.msg = "Pan no. found!"
+        
+        else:
+            request.err = "Something went wrong!"
+        return self.get(request)

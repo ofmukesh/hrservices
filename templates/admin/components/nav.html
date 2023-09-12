@@ -1,0 +1,12 @@
+{% load static %}
+<header>
+    <nav class="navbar navbar-light navbar-expand-lg border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href={% url 'home_admin' %}>
+                <img src="{% static 'images/logo.png' %}" alt="Logo" width="30" height="30"
+                    class="d-inline-block align-text-top">
+                Admin
+            </a>
+        </div>
+    </nav>
+</header>

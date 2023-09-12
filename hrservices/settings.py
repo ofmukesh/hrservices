@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'voter_service',
     'aadhar_service',
     'covid_service',
+    'admin_services',
 ]
 
 # REST_FRAMEWORK

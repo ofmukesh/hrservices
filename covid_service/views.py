@@ -31,7 +31,7 @@ class CovidView(LoginRequiredMixin, View):
             request.err = "Something went wrong!"
         return self.get(request)
 
-class CovidRecordView(View):
+class CovidRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Covid.objects.filter(account=ac)

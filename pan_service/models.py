@@ -25,3 +25,14 @@ class Panpdf(models.Model):
                               max_length=255, default='pending')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+
+class AadharToPan(models.Model):
+    account = models.ForeignKey(
+        'accounts.account', on_delete=models.CASCADE, editable=False)
+    aadhar_no = models.CharField(max_length=12, blank=False, null=False)
+    pan_no = models.CharField(max_length=255, blank=False,null=False)
+    status = models.CharField(choices=StatusChoices,
+                              max_length=255, default='pending')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)

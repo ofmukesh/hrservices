@@ -58,7 +58,7 @@ class AadharPdfView(LoginRequiredMixin, View):
         return self.get(request)
 
 
-class AadharFindRecordView(View):
+class AadharFindRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Aadharfind.objects.filter(account=ac)
@@ -70,7 +70,7 @@ class AadharFindRecordView(View):
         return render(request, 'services/aadhar/aadhar_records.html', context=context)
 
 
-class AadharPdfRecordView(View):
+class AadharPdfRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Aadharpdf.objects.filter(account=ac)

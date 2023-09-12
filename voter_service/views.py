@@ -31,7 +31,7 @@ class VoterPdfView(LoginRequiredMixin, View):
             request.err = "Something went wrong!"
         return self.get(request)
 
-class VoterPdfRecordView(View):
+class VoterPdfRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Voterpdf.objects.filter(account=ac)

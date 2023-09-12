@@ -58,7 +58,7 @@ class DlPdfView(LoginRequiredMixin, View):
         return self.get(request)
 
 
-class DlFindRecordView(View):
+class DlFindRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Dlfind.objects.filter(account=ac)
@@ -71,7 +71,7 @@ class DlFindRecordView(View):
 
 
 
-class DlPdfRecordView(View):
+class DlPdfRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
         records = Dlpdf.objects.filter(account=ac)
