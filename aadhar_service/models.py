@@ -23,7 +23,7 @@ class Aadharpdf(models.Model):
     enrollment_no = models.CharField(max_length=14, blank=False, null=False)
     time = models.TimeField()
     date = models.DateField()
-    file = models.FileField(upload_to='aadhar_files')
+    file = models.FileField(upload_to='aadhar_files',blank=True,null=True)
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
     tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)

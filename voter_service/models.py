@@ -9,7 +9,7 @@ class Voterpdf(models.Model):
     name_as_voter = models.CharField(max_length=255, blank=False, null=False)
     voter_type = models.CharField(
         max_length=255, choices=VoterTypeChoices, default=1, blank=False, null=False)
-    file = models.FileField(upload_to='voter_files')
+    file = models.FileField(upload_to='voter_files',blank=True,null=True)
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
     tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)

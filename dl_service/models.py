@@ -23,7 +23,7 @@ class Dlpdf(models.Model):
     dl_no = models.CharField(max_length=16, blank=False, null=False)
     name_as_per_dl = models.CharField(max_length=255, blank=False, null=False)
     date_of_birth = models.DateField()
-    file = models.FileField(upload_to='dl_files')
+    file = models.FileField(upload_to='dl_files',blank=True,null=True)
     status = models.CharField(choices=StatusChoices,
                               max_length=255, default='pending')
     tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None)
