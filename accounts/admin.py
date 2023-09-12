@@ -6,4 +6,4 @@ from .models import Account
 class AccountsAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'balance', 'contact_no']
     list_filter = ['balance', 'created_on', 'updated_on']
-    search_fields = ['ac_id','contact_no']
+    search_fields = ['id','contact_no']
