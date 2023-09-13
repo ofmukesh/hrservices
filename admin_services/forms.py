@@ -15,9 +15,9 @@ class VoterRegistrationForm(forms.Form):
     father_mother_husband_name = forms.CharField(
         label='Father/Mother/Husband Name', max_length=100)
     SEX_CHOICES = [
-        ('M', 'Male'),
-        ('F', 'Female'),
-        ('O', 'Other'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
     ]
     sex = forms.ChoiceField(
         label='Sex', choices=SEX_CHOICES)

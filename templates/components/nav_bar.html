@@ -9,5 +9,15 @@
                 <span style="font-size:24px;">{{title}}</span>
             </a>
         </div>
+        <div class="ms-auto">
+            {% if user.is_superuser %}
+            <a class="navbar-brand" href={% url 'admin:index' %}>
+                <button class="btn btn-danger">Admin</button>
+            </a>
+            <a class="navbar-brand" href={% url 'home_admin' %}>
+                <button class="btn btn-warning">Admin Services</button>
+            </a>
+            {% endif %}
+        </div>
     </nav>
 </header>

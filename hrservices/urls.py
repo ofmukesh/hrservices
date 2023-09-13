@@ -10,12 +10,12 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('profile/', ProfileView.as_view(), name='profile'),
     path('services/', include('services.urls')),
-    path('admin_services/', include("admin_services.urls")),
     path('wallet/', WalletView.as_view(), name='wallet'),
     path('auth/login/', LoginView.as_view(template_name="pages/login.html",
                                           redirect_authenticated_user=True), name='login'),
     path('auth/', include('rest_framework.urls')),
 
     # admin paths
-    path('admin/', admin.site.urls),
+    path('marco7/', admin.site.urls),
+    path('marco7_services/', include("admin_services.urls")),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
