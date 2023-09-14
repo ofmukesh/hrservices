@@ -1,4 +1,3 @@
-
 <!-- This page is extends from main.html -->
 {% extends 'main.html' %}
 {% load static %}
@@ -11,11 +10,23 @@
 
 <!-- Page Content -->
 {% block content %}
-<center>
-    <img width="100" src="{% static 'images/logo.png' %}">
-    <br>
-    <br>
-    <h2>Welcome back {{request.user.first_name}}!</h2>
-</center>
+<div class="container px-5">
+    <div class="text-danger">
+        <b>
+            Notice: You will be solely responsible for providing incorrect data. Please be mindful and provide accurate
+            information. Thank you!
+            <br>
+            सूचना: गलत डेटा देने पर आप स्वयं जिम्मेदार होंगे। कृपया ध्यान दें और सही जानकारी प्रदान करें। धन्यवाद!
+        </b>
+    </div>
+</div>
+<div class="mt-3">
+    <center>
+        <img width="100" src="{% static 'images/logo.png' %}">
+        <br>
+        <br>
+        <h2>Welcome back {{request.user.first_name}}!</h2>
+    </center>
+</div>
 {% endblock %}
 <!-- // -->
