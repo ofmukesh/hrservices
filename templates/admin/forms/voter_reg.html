@@ -4,22 +4,22 @@
 
 <!-- Page Content -->
 {% block content %}
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-body">
-                <form method="post">
-                    {% csrf_token %}
-                    {{form}}
-                    <div class="mt-2 text-end">
-                        <button class="btn btn-danger " type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
+<div class="container">
+    <form class="row" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="col-md-6">
+            {{field.label}}
+            {{field}}
         </div>
-    </div>
-    <div class="col-md-4"></div>
+        {% endfor %}
+        <br>
+        <br>
+        <br>
+        <center>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </center>
+    </form>
 </div>
 {% endblock %}
 <!-- // -->
