@@ -13,8 +13,9 @@ class AadharFindAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         aadhaar = Aadharfind.objects.get(id=obj.id)
+        ac_id=aadhaar.account.id
         if aadhaar.status == 'pending' and obj.status == 'rejected':
-            AccountView().reverse_money(request, aadhaar.tid_id)
+            AccountView().reverse_money(ac_id, aadhaar.tid_id)
         if aadhaar.status == 'rejected' and obj.status == 'success':
             AccountView().debit_money(request, aadhaar.tid.charged)
         return super().save_model(request, obj, form, change)
@@ -30,8 +31,9 @@ class AadharPdfAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         aadhar = Aadharpdf.objects.get(id=obj.id)
+        ac_id=aadhar.account.id
         if (aadhar.status == 'pending' or aadhar.status == 'success') and obj.status == 'rejected':
-            AccountView().reverse_money(request, aadhar.tid_id)
+            AccountView().reverse_money(ac_id, aadhar.tid_id)
         if aadhar.status == 'rejected' and obj.status == 'success':
             AccountView().debit_money(request, aadhar.tid.charged)
         return super().save_model(request, obj, form, change)

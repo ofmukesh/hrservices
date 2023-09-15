@@ -11,8 +11,9 @@ class DlFindAdmin(admin.ModelAdmin):
     
     def save_model(self, request, obj, form, change):
         dl=Dlfind.objects.get(id=obj.id)
+        ac_id=dl.account.id
         if(dl.status=='pending' or dl.status=='success') and obj.status=='rejected':
-            AccountView().reverse_money(request,dl.tid_id)
+            AccountView().reverse_money(ac_id,dl.tid_id)
         if dl.status=='rejected'  and obj.status=='success':
             AccountView().debit_money(request,dl.tid.charged)
         return  super().save_model(request, obj, form, change)
@@ -27,8 +28,9 @@ class DlPdfAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         dl=Dlpdf.objects.get(id=obj.id)
+        ac_id=dl.account.id
         if (dl.status=='pending' or dl.status=='success')  and obj.status=='rejected':
-            AccountView().reverse_money(request,dl.tid_id)
+            AccountView().reverse_money(ac_id,dl.tid_id)
         if dl.status=='rejected'  and obj.status=='success':
             AccountView().debit_money(request,dl.tid.charged)
         return  super().save_model(request, obj, form, change)

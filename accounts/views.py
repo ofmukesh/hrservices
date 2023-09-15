@@ -17,9 +17,9 @@ class AccountView():
         ac.save()
         return ac.balance
     
-    def reverse_money(self, request, tid):
+    def reverse_money(self, ac_id, tid):
         charge=Transactions.objects.get(id=tid).charged
-        ac = self.get_account(request)
+        ac = Account.objects.get(id=ac_id)
         ac.balance += charge
         ac.save()
 
