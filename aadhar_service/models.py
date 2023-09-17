@@ -29,3 +29,17 @@ class Aadharpdf(models.Model):
     tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None,blank=True,editable=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+
+class Aadhaartopdf(models.Model):
+    account = models.ForeignKey(
+        'accounts.account', on_delete=models.CASCADE, editable=False)
+    name = models.CharField(max_length=255, blank=False, null=False)
+    aadhaar_no = models.CharField(max_length=12, blank=False, null=False)
+    date_of_birth = models.DateField()
+    file = models.FileField(upload_to='aadhar_files',blank=True,null=True)
+    status = models.CharField(choices=StatusChoices,
+                              max_length=255, default='pending')
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None,blank=True,editable=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)

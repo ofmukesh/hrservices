@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import AadharFindForm, AadharPdfForm
+from .forms import *
 from accounts.views import AccountView,TransactionsView
 from services.views import ServiceView
 from utils.common import low_balance_err
@@ -60,6 +60,31 @@ class AadharPdfView(LoginRequiredMixin, View):
         return self.get(request)
 
 
+class AadharToPdfView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = AadharToPdfForm()
+        service = ServiceView().get_service_by_id('AADHAR_TO_PDF')
+        return render(request, 'services/aadhar/aadhar_to_pdf.html', context={'title': 'Aadhaar PDF by Aadhaar NO.', 'form': form, 'service': service})
+
+    def post(self, request):
+        form = AadharToPdfForm(request.POST)  # form data from request
+        ac = AccountView().get_account(request)
+        form.instance.account = ac
+        service = ServiceView().get_service_by_id('AADHAR_TO_PDF')
+
+        if ac is None:
+            return HttpResponse('Account not found')
+        elif service.charge > ac.balance:
+            request.err = low_balance_err
+        elif form.is_valid():
+            AccountView().debit_money(request, service.charge)
+            form.instance.tid=TransactionsView().add_record(request,service.charge)
+            form.save()  # saving the data
+            request.msg = "Successfully submitted!"
+        else:
+            request.err = "Something went wrong!"
+        return self.get(request)
+
 class AadharFindRecordView(LoginRequiredMixin,View):
     def get(self, request):
         ac = AccountView().get_account(request)
@@ -82,3 +107,15 @@ class AadharPdfRecordView(LoginRequiredMixin,View):
             'table_title': 'Aadhar PDF Record'
         }
         return render(request, 'services/aadhar/aadhar_pdf_records.html', context=context)
+
+
+class AadharToPdfRecordView(LoginRequiredMixin,View):
+    def get(self, request):
+        ac = AccountView().get_account(request)
+        records = Aadhaartopdf.objects.filter(account=ac)
+        context = {
+            'title': 'Aadhar No PDF Record',
+            'records': records,
+            'table_title': 'Aadhar No PDF Record'
+        }
+        return render(request, 'services/aadhar/aadhar_to_pdf_records.html', context=context)

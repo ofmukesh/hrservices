@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from .models import Aadharfind, Aadharpdf
+from .models import *
 
 
 class AadharFindForm(forms.ModelForm):
@@ -37,3 +37,20 @@ class AadharPdfForm(forms.ModelForm):
     class Meta:
         model = Aadharpdf
         fields = ['name', 'enrollment_no', 'time', 'date']
+
+
+
+class AadharToPdfForm(forms.ModelForm):
+    date_of_birth = forms.DateField(
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date (dd/mm/yyyy)')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # adding css class to form fields
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['placeholder'] = visible.field.label
+
+    class Meta:
+        model = Aadhaartopdf
+        fields = ['name', 'aadhaar_no', 'date_of_birth']
