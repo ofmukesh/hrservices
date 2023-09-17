@@ -5,8 +5,8 @@ from accounts.views import AccountView
 
 @admin.register(Covid)
 class CovidAdmin(admin.ModelAdmin):
-    list_display = ['id','account', 'name', 'mobile_no',
-                    'aadhar_no', 'date_of_birth', 'gender', 'status', 'created_on', 'updated_on']
+    list_display = ['id', 'name', 'mobile_no',
+                    'aadhar_no', 'date_of_birth', 'gender','account', 'status', 'created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on', 'status']
     search_fields = ['id', 'name', 'aadhar_no',
                      'mobile_no', 'account__contact_no']

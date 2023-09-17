@@ -5,8 +5,8 @@ from accounts.views import AccountView
 
 @admin.register(Voterpdf)
 class VoterPdfAdmin(admin.ModelAdmin):
-    list_display = ['id', 'account', 'epic_no', 'name_as_voter',
-                    'voter_type', 'file', 'status', 'created_on', 'updated_on']
+    list_display = ['id', 'epic_no', 'name_as_voter',
+                    'voter_type', 'file','account', 'status', 'created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on', 'status', 'voter_type']
     search_fields = ['id', 'name_as_voter', 'epic_no', 'account__contact_no']
 
