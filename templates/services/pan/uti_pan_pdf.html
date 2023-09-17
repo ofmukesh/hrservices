@@ -6,15 +6,16 @@
 {% block form %}
 <div class="card mb-4">
     <div class="card-header py-3 bg_theme">
-        <h6 class="m-0 font-weight-bold text-white text-center">AADHAR PDF Download</h6>
+        <h6 class="m-0 font-weight-bold text-white text-center">UTI PAN PDF DOWNLOAD</h6>
     </div><br>
     <b>
         <font class="m-0 font-weight-bold text-center color_theme">
-            <p>NOTE: Download your Aadhaar Card Number. PDF will be Generated within 24-72 working hours
+            <p>अगर आप कोई गलत डाटा अपलोड करते हो तो आपकी जिमेकारी होगी नाकि पोर्टल की
+                PHOTO और SIGN पैन HOLDER के ही दे !</p>
         </font>
     </b>
     <div class="card-body">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form}}
             <div class="charge">

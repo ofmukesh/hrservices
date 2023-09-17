@@ -1,7 +1,7 @@
 <div id="mySidenav" class="sidenav">
     <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            PAN Find
+            NSDL PAN Find
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'find_pan' %}>New apply</a></li>
@@ -16,6 +16,16 @@
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'pdf_pan' %}>New apply</a></li>
             <li><a class="dropdown-item" href={% url 'pan_pdf_records' %}>PDF List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            UTI PAN PDF
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'uti_pan_pdf' %}>New apply</a></li>
+            <li><a class="dropdown-item" href={% url 'uti_pan_pdf_records' %}>PDF List</a></li>
         </ul>
     </div>
 

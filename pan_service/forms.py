@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from .models import Panfind, Panpdf
+from .models import *
 
 
 class PanFindForm(forms.ModelForm):
@@ -46,3 +46,19 @@ class AadharToPanForm(forms.ModelForm):
     class Meta:
         model = Panpdf
         fields = ['aadhar_no']
+
+
+class UtiPanPdfForm(forms.ModelForm):
+    date_of_birth = forms.DateField(
+        input_formats=settings.DATE_INPUT_FORMATS, label='Date of Birth (dd/mm/yyyy)')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # adding css class to form fields
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['placeholder'] = visible.field.label
+
+    class Meta:
+        model = Utipanpdf
+        fields = ['pan_no', 'aadhar_no', 'date_of_birth','photo','sign']
