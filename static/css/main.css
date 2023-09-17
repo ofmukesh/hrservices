@@ -97,6 +97,11 @@ main {
     width: 99%;
 }
 
+.sidenav ._transactions_btn {
+    margin-top: 1vh;
+    width: 99%;
+}
+
 .sidenav ._logout_btn {
     margin-top: 1vh;
     width: 99%;

@@ -1,0 +1,30 @@
+<!-- This page is extends from main.html -->
+{% extends 'record_base.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block table %}
+<div class="container-fluid record_table text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Charged</th>
+                <th scope="col">Balance</th>
+                <th scope="col">Date Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in transactions %}
+            <tr>
+                <th scope="row">{{t.id}}</th>
+                <td>{{t.charged}}</td>
+                <td>{{t.balance}}</td>
+                <td>{{t.updated_on}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+<!-- // -->
