@@ -1,6 +1,16 @@
 <div id="mySidenav" class="sidenav">
     <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            INSTANT PAN FIND
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'instant_find_pan' %}>New apply</a></li>
+            <li><a class="dropdown-item" href={% url 'instant_pan_record' %}>Pan List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
             PAN Find
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">

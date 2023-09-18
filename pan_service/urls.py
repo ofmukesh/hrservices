@@ -8,4 +8,6 @@ urlpatterns = [
     path('pdf_pan_list/', PanPdfRecordView.as_view(),name='pan_pdf_records'),
     path('uti_pan_pdf/', UtiPanPdfView.as_view(),name='uti_pan_pdf'),
     path('uti_records/', UtiPanPdfRecordView.as_view(),name='uti_pan_pdf_records'),
+    path('instant_pan/', InstantPanFindView.as_view(),name='instant_find_pan'),
+    path('instant_pan_records/', InstantPanRecordView.as_view(),name='instant_pan_record'),
 ]

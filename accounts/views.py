@@ -56,7 +56,7 @@ class TransactionsView():
 class UserTransactionsHistoryView(LoginRequiredMixin, View):
     def get(self, request):
         ac = AccountView().get_account(request)
-        transactions = Transactions.objects.filter(ac=ac)
+        transactions = Transactions.objects.filter(ac=ac).order_by('-created_on')
         context = {
             'transactions': transactions,
             'title': 'Transactions',

@@ -3,6 +3,12 @@ from .models import *
 from accounts.views import AccountView
 
 
+@admin.register(InstantPanfind)
+class InstantPanFindAdmin(admin.ModelAdmin):
+    list_display = ['id', 'aadhar_no','pan_no', 'account', 'created_on', 'updated_on']
+    list_filter = ['created_on', 'updated_on']
+    search_fields = ['id', 'aadhar_no', 'account__contact_no']
+
 @admin.register(Panfind)
 class PanFindAdmin(admin.ModelAdmin):
     list_display = ['id', 'aadhar_no',

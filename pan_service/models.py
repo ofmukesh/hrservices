@@ -55,3 +55,13 @@ class Utipanpdf(models.Model):
     tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None,blank=True,editable=False)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+
+class InstantPanfind(models.Model):
+    account = models.ForeignKey(
+        'accounts.account', on_delete=models.CASCADE, editable=False)
+    aadhar_no = models.CharField(max_length=12, blank=False, null=False)
+    pan_no = models.CharField(max_length=255, default='', blank=True)
+    tid=models.OneToOneField('accounts.transactions', on_delete=models.CASCADE,null=True,default=None,blank=True,editable=False)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)

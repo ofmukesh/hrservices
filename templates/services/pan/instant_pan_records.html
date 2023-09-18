@@ -1,0 +1,28 @@
+<!-- This page is extends from main.html -->
+{% extends 'record_base.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block table %}
+<div class="container-fluid record_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Aadhar no.</th>
+                <th scope="col">Pan no.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <th scope="row">{{record.id}}</th>
+                <td>{{record.aadhar_no}}</td>
+                <td>{{record.pan_no}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+<!-- // -->

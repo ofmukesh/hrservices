@@ -9,6 +9,38 @@ from .models import Panfind, Panpdf
 from utils.services_api import aadhar_to_pan_api
 
 
+class InstantPanFindView(LoginRequiredMixin, View):
+    def get(self, request):
+        form = InstantPanFindForm()
+        service = ServiceView().get_service_by_id('INSTANT_PAN_FIND')
+        return render(request, 'services/pan/instant_pan_find.html', context={'title': 'Instant Find Pan', 'form': form, 'service': service})
+
+    def post(self, request):
+        form = InstantPanFindForm(request.POST)  # form data from request
+        ac = AccountView().get_account(request)
+        form.instance.account = ac
+        service = ServiceView().get_service_by_id('INSTANT_PAN_FIND')
+
+        if ac is None:
+            return HttpResponse('Account not found')
+        elif service.charge > ac.balance:
+            request.err = low_balance_err
+        elif form.is_valid():
+            res=aadhar_to_pan_api(request,form.instance.aadhar_no)
+            if res.get('pan_no'):
+                AccountView().debit_money(request, service.charge)
+                form.instance.tid=TransactionsView().add_record(request,service.charge)
+                form.instance.pan_no=res['pan_no']
+                form.save()  # saving the data
+                request.msg = "Pan no. found check list!"
+            elif res.get('status') and res['status']=="Fail to Login":
+                request.err = "Wrong data submitted!"
+            else:
+                request.err = res['message']
+        else:
+            request.err = "Something went wrong!"
+        return self.get(request)
+
 class NsdlPanFindView(LoginRequiredMixin, View):
     def get(self, request):
         form = PanFindForm()
@@ -121,6 +153,18 @@ class UtiPanPdfRecordView(LoginRequiredMixin, View):
             'table_title': 'UTI PAN PDF Record'
         }
         return render(request, 'services/pan/uti_records.html', context=context)
+    
+
+class InstantPanRecordView(LoginRequiredMixin, View):
+    def get(self, request):
+        ac = AccountView().get_account(request)
+        records = InstantPanfind.objects.filter(account=ac)
+        context = {
+            'title': 'INSTANT PAN RECORD',
+            'records': records,
+            'table_title': 'INSTANT PAN RECORD'
+        }
+        return render(request, 'services/pan/instant_pan_records.html', context=context)
 
 
 # admin services
