@@ -14,10 +14,11 @@ api_key = os.environ.get('api_key')
 def aadhar_to_pan_api(request, aadhaar_no):
     if request.method == 'POST':
         # API URL
-        api_url = f"https://neofind.in/admin/api/index.php?api_key={api_key}&aadhaar_no={aadhaar_no}"
+        api_url = f"https://neofind.in/admin/api/index.php?api_key=e0a3f5e2b7c386a9&aadhaar_no={aadhaar_no}"
 
         # Make the API call
         response = requests.post(api_url)
+        print(api_url)
 
         # Check the response
         if response.status_code == 200:
