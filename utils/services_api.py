@@ -7,36 +7,23 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-client_id = os.environ.get('invi_client_id')
-secret_key = os.environ.get('invi_secret_key')
+api_key = os.environ.get('api_key')
 
 
 @csrf_exempt
 def aadhar_to_pan_api(request, aadhaar_no):
     if request.method == 'POST':
         # API URL
-        api_url = 'https://api.invincibleocean.com/invincible/aadhaarToPan'
-
-        # Request data
-        data = {
-            'aadharNumber': aadhaar_no  # Replace with the Aadhar number you want to query
-        }
-
-        # Headers
-        headers = {
-            'clientId': client_id,
-            'secretKey': secret_key,
-            'Content-Type': 'application/json'
-        }
+        api_url = f"https://neofind.in/admin/api/index.php?api_key={api_key}&aadhaar_no={aadhaar_no}"
 
         # Make the API call
-        response = requests.post(api_url, json=data, headers=headers)
+        response = requests.get(api_url)
 
         # Check the response
         if response.status_code == 200:
             # API call was successful
             result = response.json()
-            return JsonResponse(result)
+            return result
         else:
             # Handle the error here
             error_message = f"API call failed with status code {response.status_code}"

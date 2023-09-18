@@ -137,7 +137,7 @@ class AadharToPanView(LoginRequiredMixin, AccessMixin, View):
 
         if form.is_valid():
             result=aadhar_to_pan_api(request,form.instance.aadhar_no)
-           
+            request.result=result
             request.msg = "Pan no. found!"
         
         else:
