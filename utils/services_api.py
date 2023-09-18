@@ -17,7 +17,7 @@ def aadhar_to_pan_api(request, aadhaar_no):
         api_url = f"https://neofind.in/admin/api/index.php?api_key={api_key}&aadhaar_no={aadhaar_no}"
 
         # Make the API call
-        response = requests.get(api_url)
+        response = requests.post(api_url)
 
         # Check the response
         if response.status_code == 200:
