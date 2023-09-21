@@ -1,6 +1,5 @@
 from django.urls import path
-from pan_service.views import AadharToPanView
-from .views import AdminView,VoterMakerView
+from .views import AdminView,VoterMakerView,AadharToPanView
 
 urlpatterns = [
     path('', AdminView.as_view(),name='home_admin'),

@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from rest_framework.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from accounts.views import AccountView,TransactionsView
 from services.views import ServiceView
@@ -172,25 +172,3 @@ class InstantPanRecordView(LoginRequiredMixin, View):
             'table_title': 'INSTANT PAN RECORD'
         }
         return render(request, 'services/pan/instant_pan_records.html', context=context)
-
-
-# admin services
-class AadharToPanView(LoginRequiredMixin, AccessMixin, View):
-    def get(self, request):
-        form = AadharToPanForm()
-        return render(request, 'admin/pages/aadhar_to_pan.html', context={'title': 'Aadhar to Pan', 'form': form})
-
-    def post(self, request):
-        form = AadharToPanForm(request.POST)  # form data from request
-        ac = AccountView().get_account(request)
-        form.instance.account = ac
-        service = ServiceView().get_service_by_id('PAN_FIND')
-
-        if form.is_valid():
-            result=aadhar_to_pan_api(request,form.instance.aadhar_no)
-            request.result=result
-            request.msg = "Pan no. found!"
-        
-        else:
-            request.err = "Something went wrong!"
-        return self.get(request)

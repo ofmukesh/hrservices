@@ -1,9 +1,12 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from utils.services_api import aadhar_to_pan_api
 from .forms import VoterRegistrationForm,VoterRegistration
 from eng_hindi import eth
+from pan_service.forms import AadharToPanForm
+import uuid
+
 class AdminView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         context = {
@@ -32,4 +35,21 @@ class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
             return render(request, 'admin/pages/old_voter.html', context={'title': 'Voter', 'data': data})
         else:
             request.err = form.errors
+        return self.get(request)
+
+
+class AadharToPanView(LoginRequiredMixin, AccessMixin, View):
+    def get(self, request):
+        form = AadharToPanForm()
+        return render(request, 'admin/pages/aadhar_to_pan.html', context={'title': 'Aadhar to Pan', 'form': form})
+
+    def post(self, request):
+        form = AadharToPanForm(request.POST)
+        if form.is_valid():
+            result=aadhar_to_pan_api(request,form.instance.aadhar_no,"admin_call"+uuid.uuid4().hex[:10])
+            request.result=result
+            request.msg = "Pan no. found!"
+        else:
+            request.err = "Something went wrong"
+        
         return self.get(request)
