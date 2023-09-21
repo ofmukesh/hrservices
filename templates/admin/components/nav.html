@@ -7,6 +7,18 @@
                     class="d-inline-block align-text-top">
                 Admin
             </a>
+            <div>
+                <a href={% url 'home' %}>
+                    <button class="btn btn-primary">
+                        View Site
+                    </button>
+                </a>
+                <a href={% url 'admin:index' %}>
+                    <button class="btn btn-danger">
+                        Admin
+                    </button>
+                </a>
+            </div>
         </div>
     </nav>
 </header>
