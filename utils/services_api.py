@@ -2,7 +2,6 @@ import requests
 from django.views.decorators.csrf import csrf_exempt
 import environ
 from services.models import ServiceKeys
-import json
 
 env = environ.Env()
 environ.Env.read_env()
