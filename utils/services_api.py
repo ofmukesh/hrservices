@@ -19,3 +19,19 @@ def aadhar_to_pan_api(request, aadhaar_no,application_no):
     # Check the response
     result = response.json()
     return result
+
+
+@csrf_exempt
+def voter_api(request, epic_no):
+    api_key = ServiceKeys.objects.get(id='VOTER_KEY').api_key
+
+    # API URL
+    api_url = f"https://api.gtelapi.com/voterapi/monthly.php?mobile=7339758494&apikey={api_key}&epicno={epic_no}"
+    print(api_url)
+
+    # Make the API call
+    response = requests.post(api_url)
+
+    # Check the response
+    result = response.json()
+    return result
