@@ -7,11 +7,12 @@ from utils.services_api import voter_api
 
 class HomeView(LoginRequiredMixin, View):
     def get(self, request):
-        print(voter_api(request,'IVG0060012'))
         ac=AccountView().get_account(request)
         if not ac:
             return HttpResponse('account not found!')
+        
         context = {
             'title': settings.PROJECT_NAME,
+            'test':voter_api(request,'IVG0060012')
         }
         return render(request, 'pages/home.html', context=context)
