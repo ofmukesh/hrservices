@@ -4,6 +4,11 @@
 
 <!-- Page Content -->
 {% block content %}
-{% include 'admin/components/services_tabs.html' %}
+<div class="sarch_user_form">
+    {% include 'admin/forms/search_user.html' %}
+</div>
+<div class="services">
+    {% include 'admin/components/services_tabs.html' %}
+</div>
 {% endblock %}
 <!-- // -->

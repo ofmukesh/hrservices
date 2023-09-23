@@ -8,15 +8,14 @@
                 Admin
             </a>
             <div>
-                <a href={% url 'home' %}>
-                    <button class="btn btn-primary">
-                        View Site
-                    </button>
+                <a class="btn btn-primary" href={% url 'home_admin' %}>
+                    Home
                 </a>
-                <a href={% url 'admin:index' %}>
-                    <button class="btn btn-danger">
-                        Admin
-                    </button>
+                <a class="btn btn-warning" href={% url 'home' %}>
+                    View Site
+                </a>
+                <a class="btn btn-danger" href={% url 'admin:index' %}>
+                    Admin
                 </a>
             </div>
         </div>
