@@ -6,7 +6,7 @@ from .forms import *
 from eng_hindi import eth
 from pan_service.forms import AadharToPanForm
 import uuid
-from accounts.models import Account
+from accounts.models import Account, AddMoneyTransactions
 
 
 class AdminView(LoginRequiredMixin, AccessMixin, View):
@@ -45,14 +45,18 @@ class UserProfile(LoginRequiredMixin, AccessMixin, View):
             id=pk)
         add_amount = int(form['amount'].value())
         if form.is_valid() and add_amount > 0:
+            old_balance = ac.balance
             ac.balance += add_amount
             ac.save()
-            request.msg = f"Amount {add_amount} added successfully!"
+            transaction = AddMoneyTransactions.objects.create(old_balance=old_balance,
+                                                              ac=ac, money_added=add_amount, balance=ac.balance)
+            transaction.save()
+            request.msg = f"Amount {add_amount} added successfully! transcation id is {transaction.id}"
         elif add_amount < 0:
             request.err = "enter amount more than 0"
         else:
             request.err = "Something went wrong"
-        return self.get(request,pk)
+        return self.get(request, pk)
 
 
 class VoterMakerView(LoginRequiredMixin, AccessMixin, View):

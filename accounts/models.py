@@ -24,7 +24,8 @@ class Transactions(models.Model):
         return self.ac.contact_no
     
 
-class Addmoneytransactions(models.Model):
+class AddMoneyTransactions(models.Model):
+    old_balance=models.IntegerField()
     money_added=models.IntegerField()
     balance=models.IntegerField()
     ac = models.ForeignKey('accounts.account', on_delete=models.CASCADE)
