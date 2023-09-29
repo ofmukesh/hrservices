@@ -1,0 +1,35 @@
+<div class="container mt-3">
+    {{ added_money_chart|json_script:"added_money_chart" }}
+
+    <canvas class="mx-auto" id="myChart" style="width:100%;max-width:600px"></canvas>
+    <script>
+        const values = JSON.parse(document.getElementById('added_money_chart').textContent);
+        console.log(values[1]);
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: values[0],
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: values[1]
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: Math.max(...values[1])
+                        }
+                    }],
+                }
+            }
+        });
+    </script>
+</div>

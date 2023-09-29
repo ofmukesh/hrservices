@@ -7,14 +7,44 @@ from eng_hindi import eth
 from pan_service.forms import AadharToPanForm
 import uuid
 from accounts.models import Account, AddMoneyTransactions
+from django.utils import timezone
+from django.db.models import Sum
 
 
 class AdminView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
+
+        # Get today's date
+        seven_days_ago = timezone.now() - timezone.timedelta(days=7)
+
+        money_added_last_7_days = [[],[]] # at index 0: array of date & 1:array of money
+
+        # Loop through the last 7 days
+        for i in range(7):
+            day = seven_days_ago + timezone.timedelta(days=i)
+            day_end = day + timezone.timedelta(days=1)
+
+            # Query to retrieve the money added for the current day
+            money_added = AddMoneyTransactions.objects.filter(
+                created_on__gte=day,
+                created_on__lt=day_end
+            ).aggregate(Sum('money_added'))['money_added__sum']
+
+            # If there is no data for the current day, set money_added to 0
+            if money_added is None:
+                money_added = 0
+
+            money_added_last_7_days[0].append(day.strftime("%Y-%m-%d"))
+            money_added_last_7_days[1].append(money_added)
+        
+        print(money_added_last_7_days)
+
         context = {
             'title': 'Admin',
             'serchUserForm': SearchUserForm(),
+            'added_money_chart': money_added_last_7_days,
         }
+
         return render(request, 'admin/home.html', context=context)
 
     def post(self, request):
