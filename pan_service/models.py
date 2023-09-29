@@ -42,8 +42,8 @@ class AadharToPan(models.Model):
 
 
 class Utipanpdf(models.Model):
-    photo = models.ImageField(blank=True,upload_to='pan_photos')
-    sign = models.ImageField(blank=True,upload_to='pan_photos')
+    photo = models.ImageField(blank=False,null=False,upload_to='pan_photos')
+    sign = models.ImageField(blank=False,null=False,upload_to='pan_photos')
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     pan_no = models.CharField(max_length=10, blank=False, null=False)
