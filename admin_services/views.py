@@ -62,7 +62,7 @@ class UserProfile(LoginRequiredMixin, AccessMixin, View):
 class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         form = VoterRegistrationForm()
-        return render(request, 'admin/forms/voter_reg.html', context={'title': 'Covid', 'form': form})
+        return render(request, 'admin/forms/voter_reg.html', context={'title': 'Voter Generate', 'form': form})
 
     def post(self, request):
         form = VoterRegistrationForm(
