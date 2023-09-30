@@ -1,0 +1,16 @@
+<!-- This page is extends from main.html -->
+{% extends 'admin/main.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="chart_view p-2">
+    <div class="container">
+        <a class="btn btn-warning" href={% url 'home_admin' %}>
+            Home
+        </a>
+    </div>
+    {% include 'admin/components/chart.html' %}
+</div>
+{% endblock %}
+<!-- // -->

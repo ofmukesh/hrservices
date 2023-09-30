@@ -1,20 +1,26 @@
 <div class="container mt-3">
-    {{ added_money_chart|json_script:"added_money_chart" }}
-
-    <canvas class="mx-auto" id="myChart" style="width:100%;max-width:600px"></canvas>
+    {{ added_money_chart|json_script:"added_money_data" }}
+    <div class="row">
+        <div class="col-md">
+            <h5>Money added</h5>
+            <canvas class="mx-auto" id="money_added_chart" style="width:100%;max-width:600px"></canvas>
+        </div>
+        <div class="col-md">
+            <h5>Transactions</h5>
+            <canvas class="mx-auto" id="trasactions_chart" style="width:100%;max-width:600px"></canvas>
+        </div>
+    </div>
     <script>
-        const values = JSON.parse(document.getElementById('added_money_chart').textContent);
-        console.log(values[1]);
-        new Chart("myChart", {
+        const added_money_values = JSON.parse(document.getElementById('added_money_data').textContent);
+        new Chart("money_added_chart", {
             type: "line",
             data: {
-                labels: values[0],
+                labels: added_money_values[0],
                 datasets: [{
                     fill: false,
-                    lineTension: 0,
-                    backgroundColor: "rgba(0,0,255,1.0)",
-                    borderColor: "rgba(0,0,255,0.1)",
-                    data: values[1]
+                    backgroundColor: "green",
+                    borderColor: "lightgreen",
+                    data: added_money_values[1]
                 }]
             },
             options: {
@@ -25,7 +31,33 @@
                     yAxes: [{
                         ticks: {
                             min: 0,
-                            max: Math.max(...values[1])
+                            max: Math.max(...added_money_values[1]) + 40
+                        }
+                    }],
+                }
+            }
+        });
+        const trasactions_values = JSON.parse(document.getElementById('added_money_data').textContent);
+        new Chart("trasactions_chart", {
+            type: "line",
+            data: {
+                labels: trasactions_values[0],
+                datasets: [{
+                    fill: false,
+                    backgroundColor: "red",
+                    borderColor: "pink",
+                    data: trasactions_values[1]
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: Math.max(...added_money_values[1]) + 40
                         }
                     }],
                 }

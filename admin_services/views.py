@@ -13,14 +13,43 @@ from django.db.models import Sum
 
 class AdminView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
+        context = {
+            'title': 'Home | Admin',
+        }
+        return render(request, 'admin/home.html', context=context)
+
+    def post(self, request):
+        form = SearchUserForm(request.POST)
+        try:
+            ac = Account.objects.get(
+                contact_no=form['mobile_no'].value())
+            return redirect(f'user/{ac.id}')
+        except:
+            request.err = "Not found"
+        return self.get(request)
+
+
+class ServicesView(LoginRequiredMixin, AccessMixin, View):
+    def get(self, request):
+        context = {
+            'title': 'Services | Admin',
+        }
+        return render(request, 'admin/pages/services.html', context=context)
+
+
+class DashboardView(LoginRequiredMixin, AccessMixin, View):
+    def get(self, request):
+        # chart days
+        days = 10
 
         # Get today's date
-        seven_days_ago = timezone.now() - timezone.timedelta(days=7)
+        seven_days_ago = timezone.now() - timezone.timedelta(days=days)
 
-        money_added_last_7_days = [[],[]] # at index 0: array of date & 1:array of money
+        # at index 0: array of date & 1:array of money
+        money_added_last_7_days = [[], []]
 
         # Loop through the last 7 days
-        for i in range(7):
+        for i in range(days):
             day = seven_days_ago + timezone.timedelta(days=i)
             day_end = day + timezone.timedelta(days=1)
 
@@ -36,23 +65,29 @@ class AdminView(LoginRequiredMixin, AccessMixin, View):
 
             money_added_last_7_days[0].append(day.strftime("%Y-%m-%d"))
             money_added_last_7_days[1].append(money_added)
-        
-        print(money_added_last_7_days)
 
         context = {
-            'title': 'Admin',
-            'serchUserForm': SearchUserForm(),
+            'title': 'Dashboard | Admin',
             'added_money_chart': money_added_last_7_days,
         }
 
-        return render(request, 'admin/home.html', context=context)
+        return render(request, 'admin/pages/dashboard.html', context=context)
+
+
+class AddMoneyView(LoginRequiredMixin, AccessMixin, View):
+    def get(self, request):
+        context = {
+            'title': 'Services | Admin',
+            'serchUserForm': SearchUserForm(),
+        }
+        return render(request, 'admin/pages/add_money.html', context=context)
 
     def post(self, request):
         form = SearchUserForm(request.POST)
         try:
             ac = Account.objects.get(
                 contact_no=form['mobile_no'].value())
-            return redirect(f'user/{ac.id}')
+            return redirect(f'../user/{ac.id}')
         except:
             request.err = "Not found"
         return self.get(request)

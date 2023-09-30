@@ -1,0 +1,12 @@
+<!-- This page is extends from main.html -->
+{% extends 'admin/main.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="services container p-3">
+    <button type="button" onclick="history.back()" class="btn btn-warning">Go back</button>
+    {% include 'admin/components/services_tabs.html' %}
+</div>
+{% endblock %}
+<!-- // -->

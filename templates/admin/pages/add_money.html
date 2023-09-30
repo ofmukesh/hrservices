@@ -1,0 +1,14 @@
+<!-- This page is extends from main.html -->
+{% extends 'admin/main.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="sarch_user_form p-3">
+    <div class="container">
+        <button type="button" onclick="history.back()" class="btn btn-warning">Go back</button>
+    </div>
+    {% include 'admin/forms/search_user.html' %}
+</div>
+{% endblock %}
+<!-- // -->

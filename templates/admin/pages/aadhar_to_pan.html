@@ -14,6 +14,7 @@
             {% csrf_token %}
             {{form}}
             <div class="mt-2 text-end">
+                <button type="button" onclick="history.back()" class="btn btn-warning">Go back</button>
                 <button class="btn btn-danger text-light " type="submit">Submit</button>
             </div>
         </form>
