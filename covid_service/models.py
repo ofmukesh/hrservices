@@ -5,7 +5,7 @@ from utils.choices import StatusChoices,GenderChoices
 class Covid(models.Model):
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
-    name = models.CharField(max_length=15, blank=False, null=False)
+    name = models.CharField(max_length=255, blank=False, null=False)
     mobile_no = models.CharField(max_length=10, blank=False, null=False)
     aadhar_no = models.CharField(max_length=12, blank=False, null=False)
     gender = models.CharField(
