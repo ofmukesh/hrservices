@@ -6,7 +6,7 @@ from .forms import *
 from eng_hindi import eth
 from pan_service.forms import AadharToPanForm
 import uuid
-from accounts.models import Account, AddMoneyTransactions
+from accounts.models import Account, AddMoneyTransactions,Transactions
 from django.utils import timezone
 from django.db.models import Sum
 
@@ -46,7 +46,7 @@ class DashboardView(LoginRequiredMixin, AccessMixin, View):
         seven_days_ago = timezone.now() - timezone.timedelta(days=days)
 
         # at index 0: array of date & 1:array of money
-        money_added_last_7_days = [[], []]
+        chart_data = {'dates':[],'money_added':[],'transactions':[]}
 
         # Loop through the last 7 days
         for i in range(days):
@@ -59,16 +59,25 @@ class DashboardView(LoginRequiredMixin, AccessMixin, View):
                 created_on__lt=day_end
             ).aggregate(Sum('money_added'))['money_added__sum']
 
+            transaction = Transactions.objects.filter(
+                created_on__gte=day,
+                created_on__lt=day_end
+            ).aggregate(Sum('charged'))['charged__sum']
+
             # If there is no data for the current day, set money_added to 0
             if money_added is None:
                 money_added = 0
+            
+            if transaction is None:
+                transaction = 0
 
-            money_added_last_7_days[0].append(day.strftime("%Y-%m-%d"))
-            money_added_last_7_days[1].append(money_added)
+            chart_data['dates'].append(day.strftime("%Y-%m-%d"))
+            chart_data['money_added'].append(money_added)
+            chart_data['transactions'].append(transaction)
 
         context = {
             'title': 'Dashboard | Admin',
-            'added_money_chart': money_added_last_7_days,
+            'values': chart_data,
         }
 
         return render(request, 'admin/pages/dashboard.html', context=context)

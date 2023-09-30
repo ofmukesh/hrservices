@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    {{ added_money_chart|json_script:"added_money_data" }}
+    {{ values|json_script:"values" }}
     <div class="row">
         <div class="col-md">
             <h5>Money added</h5>
@@ -11,16 +11,17 @@
         </div>
     </div>
     <script>
-        const added_money_values = JSON.parse(document.getElementById('added_money_data').textContent);
+        const values = JSON.parse(document.getElementById('values').textContent);
+        console.log(values);
         new Chart("money_added_chart", {
             type: "line",
             data: {
-                labels: added_money_values[0],
+                labels: values.dates,
                 datasets: [{
                     fill: false,
                     backgroundColor: "green",
                     borderColor: "lightgreen",
-                    data: added_money_values[1]
+                    data: values.money_added
                 }]
             },
             options: {
@@ -31,22 +32,21 @@
                     yAxes: [{
                         ticks: {
                             min: 0,
-                            max: Math.max(...added_money_values[1]) + 40
+                            max: Math.max(...values.money_added) + 20
                         }
                     }],
                 }
             }
         });
-        const trasactions_values = JSON.parse(document.getElementById('added_money_data').textContent);
         new Chart("trasactions_chart", {
             type: "line",
             data: {
-                labels: trasactions_values[0],
+                labels: values.dates,
                 datasets: [{
                     fill: false,
                     backgroundColor: "red",
                     borderColor: "pink",
-                    data: trasactions_values[1]
+                    data: values.transactions
                 }]
             },
             options: {
@@ -57,7 +57,6 @@
                     yAxes: [{
                         ticks: {
                             min: 0,
-                            max: Math.max(...added_money_values[1]) + 40
                         }
                     }],
                 }
