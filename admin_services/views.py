@@ -6,7 +6,7 @@ from .forms import *
 from eng_hindi import eth
 from pan_service.forms import AadharToPanForm
 import uuid
-from accounts.models import Account, AddMoneyTransactions,Transactions
+from accounts.models import Account, AddMoneyTransactions, Transactions
 from django.utils import timezone
 from django.db.models import Sum
 
@@ -46,7 +46,7 @@ class DashboardView(LoginRequiredMixin, AccessMixin, View):
         seven_days_ago = timezone.now() - timezone.timedelta(days=days)
 
         # at index 0: array of date & 1:array of money
-        chart_data = {'dates':[],'money_added':[],'transactions':[]}
+        chart_data = {'dates': [], 'money_added': [], 'transactions': []}
 
         # Loop through the last 7 days
         for i in range(days):
@@ -67,7 +67,7 @@ class DashboardView(LoginRequiredMixin, AccessMixin, View):
             # If there is no data for the current day, set money_added to 0
             if money_added is None:
                 money_added = 0
-            
+
             if transaction is None:
                 transaction = 0
 
@@ -75,9 +75,17 @@ class DashboardView(LoginRequiredMixin, AccessMixin, View):
             chart_data['money_added'].append(money_added)
             chart_data['transactions'].append(transaction)
 
+        # Calculate the sum of current_total for non-superusers
+        total_balance = Account.objects.filter(user__is_superuser=False).aggregate(
+            Sum('balance'))['balance__sum']
+
+        # Check if the total_balance is None (no non-superusers found) and set it to 0 if needed
+        total_balance = total_balance if total_balance is not None else 0
+
         context = {
             'title': 'Dashboard | Admin',
             'values': chart_data,
+            'total_balance': total_balance,
         }
 
         return render(request, 'admin/pages/dashboard.html', context=context)
