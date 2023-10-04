@@ -3,9 +3,6 @@ from .models import VoterRegistration
 
 
 class VoterRegistrationForm(forms.ModelForm):
-    date_of_registration = forms.DateField(label='Date of Registration ',
-                                           widget=forms.TextInput(attrs={'type': 'date'}))
-
     class Meta:
         model = VoterRegistration
         fields = '__all__'

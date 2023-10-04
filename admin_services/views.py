@@ -3,12 +3,13 @@ from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from utils.services_api import aadhar_to_pan_api
 from .forms import *
-from eng_hindi import eth
 from pan_service.forms import AadharToPanForm
 import uuid
 from accounts.models import Account, AddMoneyTransactions, Transactions
 from django.utils import timezone
 from django.db.models import Sum
+from utils.services_api import voter_api
+from eng_hindi import eth
 
 
 class AdminView(LoginRequiredMixin, AccessMixin, View):
@@ -151,16 +152,17 @@ class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
             request.POST, request.FILES)  # form data from request
         if form.is_valid():
             form.save()
-            data = VoterRegistration.objects.get(id=form.instance.id)
-            data.date = data.date_of_registration.strftime('%d.%m.%Y')
-            data.elector_name_hi = eth(data.elector_name)
-            data.father_mother_husband_name_hi = eth(
-                data.father_mother_husband_name)
-            data.sex_hi = eth(data.sex)
-            data.address1_hi = eth(data.address1)
-            data.address2_hi = eth(data.address2)
-            data.place_hi = eth(data.place)
-            return render(request, 'admin/pages/old_voter.html', context={'title': 'Voter', 'data': data})
+            tmp_data = VoterRegistration.objects.get(id=form.instance.id)
+            try:
+                data = voter_api(request, tmp_data.voter_no)[
+                    'response']['docs'][0]
+            except:
+                data = {}
+            data['pic']=tmp_data.photo
+            data['state_v1']=eth(data.get('state',''))
+            data['address1']=tmp_data.address1
+            data['address1_v1']=eth(tmp_data.address1)
+            return render(request, 'admin/pages/latest_voter.html', context={'title': 'Voter', 'data': data})
         else:
             request.err = form.errors
         return self.get(request)
