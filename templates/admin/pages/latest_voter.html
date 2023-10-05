@@ -4,43 +4,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Voter Card Priview</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
     <link href="aadhar.css" type="text/css" rel="stylesheet">
 
     <head>
-
-        <!------------------------------ # connection ------------------------------->
-
-        <!------------------------------ # connection ------------------------------->
         <style>
             .firstpage {
-                background-image: url("{% static 'images/latest_voter/front.jpg' %}");
-                height: 500px;
+                background-image: url("{% static 'images/latest_voter/voter.jpg' %}");
+                height: 1400px;
                 background-size: contain;
                 background-repeat: no-repeat;
                 margin-right: 30px;
-                width: 320px;
+                width: 1000px;
                 float: none;
-                border-radius: 10px;
-                border: 3px dotted black;
                 position: relative;
-                font-size: 14px;
+                font-size: 12px;
                 margin-bottom: 20px;
 
-            }
-
-            .secondpage {
-                background-image: url("{% static 'images/latest_voter/back.jpg' %}");
-                height: 500px;
-                background-size: contain;
-                background-repeat: no-repeat;
-                margin-right: 30px;
-                border-radius: 10px;
-                border: 3px dotted black;
-                width: 320px;
-                float: none;
-                position: relative;
             }
         </style>
 
@@ -58,60 +38,116 @@
 
 
             .secondpage {
-                font-size: 9px;
+                font-size: 10px;
                 font-weight: 600;
                 box-sizing: border-box;
                 padding: 14px;
+                position: absolute;
+                top: 112px;
+                width: 275px;
+                margin-left: 322px;
+                left: 353px;
             }
 
             .gender span.label,
             .dob span.label {
-                width: 116px;
+                width: 16px;
                 display: inline-block;
             }
 
             .imagecontainer {
                 position: absolute;
-                top: 123px;
-                left: 91px;
+                top: 268px;
+                left: 59px;
             }
 
-            img.picture {
-                width: 140px;
-                height: 186px;
+            .imagecontainers {
+                position: absolute;
+                top: 240px;
+                left: 395px;
             }
 
             img.barcode {
-                width: 101px;
-                height: 23px;
-                position: absolute;
-                top: 85px;
-                left: 61px;
+                width: 108px;
+                height: 108px;
+                position: relative;
+                top: 128px;
+                right: 123px;
 
+            }
+
+            img.qrcode {
+                width: 208px;
+                height: 208px;
+                position: relative;
+                top: 258px;
+                left: 20px;
+
+            }
+
+            img.picture {
+                width: 98px;
+                height: 132px;
+                border: ridge;
+                border-radius: 3px;
+                border-color: #bfc1c6;
+            }
+
+            img.pictures {
+                opacity: 0.7;
+                width: 30px;
+                height: 40px;
+                border: ridge;
+                border-radius: 0px;
+                border-color: #bfc1c6;
+            }
+
+            .epicnumberback {
+                position: absolute;
+                top: 423px;
+                right: 296px;
+                font-size: 11.5px;
             }
 
             .epicnumber {
                 position: absolute;
-                top: 82px;
-                left: 175px;
+                top: 258px;
+                right: 296px;
+                font-size: 11.5px;
+            }
+
+            .epicnumberfront {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                font-size: 6px;
+                transform: rotate(-90deg);
+            }
+
+            .epicnumberphoto {
+                position: absolute;
+                top: 10px;
+                left: -328px;
+                font-size: 12px;
             }
 
             .settable {
                 position: absolute;
-                top: 331px;
-                left: 25px;
+                top: 268px;
+                left: 170px;
 
             }
 
             .tablecss {
                 font-family: arial;
-                font-size: 14px;
+                font-size: 10px;
                 font-weight: bold;
+
             }
 
             .r_name {
                 position: absolute;
-                top: 331px;
+                top: 321px;
                 left: 25px;
             }
 
@@ -119,6 +155,12 @@
                 position: absolute;
                 left: 25px;
                 top: 363px;
+            }
+
+            .actual {
+                position: absolute;
+                left: 25px;
+                top: 603px;
             }
 
             .father_name {
@@ -153,28 +195,56 @@
 
             .address_regional {
                 margin-bottom: 5px;
+                margin-top: -50px;
             }
 
             .address {
-                margin-bottom: 60px;
+                margin-bottom: 48px;
             }
 
             .nirvachan .date {
-                width: 100px;
+                width: 250px;
+                margin-bottom: 60px;
                 float: left;
             }
 
+            .dates {
+                width: 250px;
+                margin-top: -270px;
+                margin-left: -98px;
+                float: left;
+            }
+
+            .qrdate {
+                width: 250px;
+                margin-top: 135px;
+                float: left;
+                margin-left: -718px;
+            }
+
             .nirvachan .nirvachanofficer {
-                float: right;
-                width: 160px;
-                text-align: right;
+                float: left;
+                width: 245px;
+                margin-right: 10px;
+                text-align: left;
+                position: relative;
+            }
+
+            .nirvachanofficers {
+                float: left;
+                width: 245px;
+                margin-left: -40px;
+                bottom: 38px;
+                text-align: left;
                 position: relative;
             }
 
             img.officersign {
                 position: absolute;
-                top: -69px;
-                left: 20px;
+                height: 40px;
+                width: 40px;
+                top: -65px;
+                left: 173px;
             }
 
             .nirvachan:before,
@@ -185,11 +255,15 @@
             }
 
             .nirvachan {
-                margin-bottom: 10px;
+                margin-bottom: 140px;
+
             }
 
-            .assemballysankhya .regional {
-                margin-bottom: 4px;
+            .assemballysankhya .dates {
+                margin-top: 30px;
+                margin-left: -10px;
+                font-size: 14px;
+                font-weight: bold;
             }
 
             .assemballysankhya {
@@ -197,7 +271,17 @@
             }
 
             .bhagsankhya .regional {
-                margin-bottom: 4px;
+                margin-bottom: 15px;
+            }
+
+            .bhagsankhyas .regionals {
+                margin-bottom: 15px;
+            }
+
+            .img {
+                -webkit-filter: grayscale(100%);
+                /* Safari 6.0 - 9.0 */
+                filter: grayscale(100%);
             }
 
             @media print {
@@ -233,53 +317,66 @@
 
     </head>
 
-<body onload="window.print();">
+<body>
+    <!--<body onload="window.print();">-->
     <main class="bg">
-        <div class="row ml-5  mt-5" id="content-area" style="margin-left:100px;">
+        <div class="row">
             <div class="firstpage">
-                <img src="http://bwipjs-api.metafloor.com/?bcid=code128&text=RRC3702305" class="barcode">
-                <div class="epicnumber">{{data.epic_no}}</div>
+
                 <div class="imagecontainer">
                     <img src={{data.pic.url}} class="picture">
+
+                </div>
+
+                <div class="imagecontainers img">
+                    <div class="epicnumberfront font-bold">{{data.epic_no}}</div>
+                    <div class="epicnumberphoto font-bold">{{data.epic_no}}</div>
+                    <img class="officersign" src="{% static 'images/latest_voter/sign.png' %}">
+                    <img src={{data.pic.url}} class="pictures">
+
                 </div>
                 <div class="settable">
-                    <table class="tablecss" style="font-weight:bold;font-size:14px">
+                    <table class="tablecss" style=" line-height: 1.2; font-weight:bold;font-size:12px">
                         <tr>
-                            <td style="padding-bottom: 15px;">नाम</td>
-                            <td style="padding-bottom: 15px;">: {{data.name_v1}}</td>
+                            <td>नाम: {{data.name_v1}}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td style="padding-bottom: 15px;">Name</td>
-                            <td style="padding-bottom: 15px;">: {{data.name|upper}}</td>
+                            <td>Name : {{data.name|upper}}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td style="padding-bottom: 15px;">पति का नाम</td>
-                            <td style="padding-bottom: 15px;">: {{data.rln_name_v1}}</td>
+                            <td>पति का नाम : {{data.rln_name_v1}}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td style="padding-bottom: 15px;">Husband Name</td>
-                            <td style="padding-bottom: 15px;">: {{data.rln_name|upper}}</td>
+                            <td>Husband Name : {{data.rln_name|upper}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            {% if data.gender == "F" %}
+                            <td>लिंग/Gender : महिला / Female</td>
+                            {%else%}
+                            <td>लिंग/Gender : पुरुष / Male</td>
+                            {%endif%}
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>जन्मतिथि/आयु <br>Date Of Birth/Age : {{data.age}}</td>
+                            <td> <br></td>
                         </tr>
                     </table>
                 </div>
-
+                <div class="imagecontainer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Qr_code_SelfieDuMacaque.png" class="qrcode">
+                </div>
 
             </div>
 
             <div class="secondpage">
-                <div class="gender">
-                    <span class="label">लिंग/Sex</span>
-                    {% if data.gender == "F" %}
-                    <span class="value">: महिला / Female</span>
-                    {%else%}
-                    <span class="value">: पुरुष / Male</span>
-                    {%endif%}
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Qr_code_SelfieDuMacaque.png" class="barcode">
+                <div class="epicnumber font-bold">{{data.epic_no}}</div>
 
-                </div>
-                <div class="dob">
-                    <span class="label">जन्मतिथि/आयु <br>Date Of Birth/Age</span>
-                    <span class="value">: {{data.age}}</span>
-                </div>
 
                 <div class="address_regional">
                     <span class="label">पता : </span>
@@ -293,50 +390,79 @@
                     <span class="value">{{data.address1}},{{data.part_name}}, {{data.district }},{{data.state}}</span>
                 </div>
 
-                <div class="nirvachan">
-                    <div class="date">
-                        <span class="label">Date:</span>
-                        <span class="value">04/10/2023</span>
-                    </div>
 
-                    <div class="nirvachanofficer">
-                        <img class="officersign" src="{% static 'images/latest_voter/sign.png' %}">
-                        <span class="label">निर्वाचक रजिस्ट्रीकरण अधिकारी<br>Electoral Registration Officer</span>
+                <div class="imagecontainer">
+                    <div class="nirvachanofficers">
+                        <span class="label">निर्वाचक रजिस्ट्रीकरण अधिकारी : {{data.ac_no}} - {{data.ac_name_v1}} <br>Electoral Registration
+                            Officer : {{data.ac_no}} - {{data.ac_name}} </span>
                         <span class="value"></span>
                     </div>
 
-                </div>
-
-                <div class="assemballysankhya">
-                    <div class="regional">
-                        <span class="label">विधानसभा निर्वाचन क्षेत्र संख्या एवं नाम : </span>
-                        <span class="value"><br>{{data.ac_no}} - {{data.ac_name_v1}}</span>
+                    <div class="imagecontainer">
+                        <div class="dates">
+                            <span class="label"></span>
+                            <span class="value">Download Date-: 05/10/2023</span>
+                        </div>
                     </div>
+                    <div class="assemballysankhya">
+                        <div class="dates">
+                            <div class="regional font-bold" style="margin-top:90px;">: {{data.epic_no}}</div>
 
-                    <div class="actual">Assembly Constituency No. & Name : </span>
-                        <span class="value"><br>{{data.ac_no}} - {{data.ac_name}}</span>
-                    </div>
-                </div>
+                        </div>
 
+                        <div class="assemballysankhya">
+                            <div class="dates">
+                                <span class="label">: NA </span>
+                                <span class="value"><br></span>
+                            </div>
 
-                <div class="bhagsankhya">
-                    <div class="regional">
-                        <span class="label">भाग संख्या और नाम : </span>
-                        <span class="value">{{data.part_no}} {{data.part_name_v1}}</span>
-                    </div>
+                            <div class="assemballysankhya">
+                                <div class="dates">
+                                    <span class="label">: {{data.ac_no}} - {{data.ac_name_v1}}</span>
+                                    <span class="value"><br></span>
+                                </div>
 
-                    <div class="actual">Part No. & Name : </span>
-                        <span class="value">{{data.part_no}} {{data.part_name}}</span>
-                    </div>
-                </div>
+                                <div class="assemballysankhya">
+                                    <div class="dates">: {{data.ac_no}} - {{data.ac_name}}</span>
+                                        <span class="value"><br></span>
+                                    </div>
+                                </div>
 
+                                <div class="assemballysankhya">
+                                    <div class="dates">
+                                        <span class="label">: {{data.part_no}} {{data.part_name_v1}}</span>
+                                        <span class="value">
+                                    </div>
+                                    <div class="dates">
+                                        <div class="label">: {{data.part_no}} {{data.part_name}}</span>
+                                            <span class="value">
+                                        </div>
+                                    </div>
 
-
-
-
-            </div>
-        </div>
+                                    <div class="bhagsankhyas">
+                                        <div class="dates">
+                                            <span class="label" style="font-size:14px">: {{data.part_name_v1}}</span>
+                                            <span class="value">
+                                        </div>
+                                        <div class="assemballysankhya">
+                                            <div class="dates">
+                                                <div class="label">: {{data.part_name}}</span>
+                                                    <span class="value">
+                                                </div>
+                                            </div>
+                                            <div class="imagecontainer">
+                                                <div class="qrdate">
+                                                    <span class="label"></span>
+                                                    <span class="value" style="font-size:15px">Download Date-:
+                                                        05/10/2023</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
     </main>
 </body>
 
 </html>
+<script>
+    window.print();
+</script>
