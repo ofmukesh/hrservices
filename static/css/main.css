@@ -121,5 +121,6 @@ main {
 
 /* records */
 .record_table {
-    overflow-x: scroll;
+    overflow: scroll;
+    max-height: 90vh;
 }
