@@ -5,7 +5,8 @@
 <!-- Page Content -->
 {% block content %}
 <div class="container">
-    <form class="row" method="post" enctype="multipart/form-data">
+    <h3 class="text-danger">Image size must be less then 2 MB !</h3>
+    <form class="border p-2 row" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}
         <div class="col-md-6">

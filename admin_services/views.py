@@ -159,6 +159,7 @@ class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
             except:
                 data = {}
             data['pic']=tmp_data.photo
+            data['date']= timezone.now().strftime("%d/%m/%y")
             data['state_v1']=eth(data.get('state',''))
             data['address1']=tmp_data.address1
             data['address1_v1']=eth(tmp_data.address1)
