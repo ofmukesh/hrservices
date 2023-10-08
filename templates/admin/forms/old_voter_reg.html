@@ -1,0 +1,27 @@
+<!-- This page is extends from main.html -->
+{% extends 'admin/main.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block content %}
+<div class="container">
+    <h3 class="text-danger">Image size must be less then 2 MB !</h3>
+    <form class="border p-2 row" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="col-md-6">
+            {{field.label}}
+            {{field}}
+        </div>
+        {% endfor %}
+        <br>
+        <br>
+        <br>
+        <center>
+            <button type="button" onclick="history.back()" class="btn btn-warning">Go back</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </center>
+    </form>
+</div>
+{% endblock %}
+<!-- // -->

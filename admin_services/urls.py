@@ -9,4 +9,5 @@ urlpatterns = [
     path('user/<int:pk>', UserProfile.as_view(),name='user_profile'),
     path('aadhar_to_pan/', AadharToPanView.as_view(),name='aadhar_to_pan'),
     path('voter_gen/', VoterMakerView.as_view(),name='voter_gen'),
+    path('old_voter_gen/', OldVoterMakerView.as_view(),name='old_voter_gen'),
 ]
