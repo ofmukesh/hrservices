@@ -1,7 +1,9 @@
+{% load static %}
 <div id="mySidenav" class="sidenav">
     <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
             INSTANT PAN FIND
+            <img class="new_service_icon" src="{% static 'images/new_icon.png' %}" alt="">
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'instant_find_pan' %}>New apply</a></li>
@@ -36,6 +38,17 @@
         <ul class="dropdown-menu dropdown-menu-light form-control">
             <li><a class="dropdown-item" href={% url 'uti_pan_pdf' %}>New apply</a></li>
             <li><a class="dropdown-item" href={% url 'uti_pan_pdf_records' %}>PDF List</a></li>
+        </ul>
+    </div>
+
+    <div class="items mt-1">
+        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
+            AAYUSHMAN PDF 
+            <img class="new_service_icon" src="{% static 'images/new_icon.png' %}" alt="">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light form-control">
+            <li><a class="dropdown-item" href={% url 'pdf_aayushman' %}>New apply</a></li>
+            <li><a class="dropdown-item" href={% url 'aayushman_pdf_records' %}>Pan List</a></li>
         </ul>
     </div>
 

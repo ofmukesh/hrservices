@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'voter_service',
     'aadhar_service',
     'covid_service',
+    'aayushman_service',
     'admin_services',
 ]
 

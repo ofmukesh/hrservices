@@ -1,0 +1,37 @@
+<!-- This page extends from main.html -->
+{% extends 'record_base.html' %}
+{% load static %}
+
+<!-- Page Content -->
+{% block table %}
+<div class="container-fluid record_table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">State</th>
+                <th scope="col">Parameter Type</th>
+                <th scope="col">Parameter Number</th>
+                <th scope="col">File</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <th scope="row">{{record.id}}</th>
+                <td>{{record.state}}</td>
+                <td>{{record.parameter_type}}</td>
+                <td>{{record.parameter_no}}</td>
+                <td>{% if record.file %}
+                    <a target="_blank" href="/media/{{record.file}}">Download</a>
+                    {% endif %}
+                </td>
+                <td>{{record.status}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+<!-- // -->

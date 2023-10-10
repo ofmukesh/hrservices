@@ -124,3 +124,8 @@ main {
     overflow: scroll;
     max-height: 90vh;
 }
+
+.new_service_icon{
+    height: 20px;
+    width: 20px;
+}
