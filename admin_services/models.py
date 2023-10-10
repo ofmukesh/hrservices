@@ -1,4 +1,25 @@
 from django.db import models
+from django.utils import timezone
+from datetime import date
+
+class InstantPanTransactions(models.Model):
+    count = models.IntegerField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    @classmethod
+    def create_or_update_transaction(cls):
+        today = date.today()
+        existing_instance = cls.objects.filter(created_on__date=today).first()
+
+        if existing_instance:
+            existing_instance.count += 1  # Increment the count by 1
+            existing_instance.save()
+            return existing_instance
+        else:
+            new_instance = cls(count=1)  # Create a new instance with count=1
+            new_instance.save()
+            return new_instance
 
 class VoterRegistration(models.Model):
     photo = models.ImageField(blank=False,upload_to='voter_photos')

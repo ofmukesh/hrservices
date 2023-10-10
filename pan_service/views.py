@@ -8,7 +8,7 @@ from utils.common import low_balance_err
 from .models import Panfind, Panpdf
 from utils.services_api import aadhar_to_pan_api
 from django.db import transaction
-
+from admin_services.models import InstantPanTransactions
 
 class InstantPanFindView(LoginRequiredMixin, View):
     def get(self, request):
@@ -36,6 +36,7 @@ class InstantPanFindView(LoginRequiredMixin, View):
                     data.pan_no=res['pan_no']
                     data.save()
                     AccountView().debit_money(request, service.charge)
+                    InstantPanTransactions.create_or_update_transaction()
                     request.msg = "Pan no. found check list!"
                     transaction.savepoint_commit(sp1)
                 elif res.get('status') and res['status']=="Fail to Login":

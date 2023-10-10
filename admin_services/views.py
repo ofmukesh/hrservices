@@ -1,8 +1,10 @@
+# Import necessary modules and classes
 from django.shortcuts import render, redirect
 from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from utils.services_api import aadhar_to_pan_api
 from .forms import *
+from .models import *
 from pan_service.forms import AadharToPanForm
 import uuid
 from accounts.models import Account, AddMoneyTransactions, Transactions
@@ -11,7 +13,7 @@ from django.db.models import Sum
 from utils.services_api import voter_api
 from eng_hindi import eth
 
-
+# Define an AdminView class with GET and POST methods for handling admin homepage
 class AdminView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         context = {
@@ -20,8 +22,10 @@ class AdminView(LoginRequiredMixin, AccessMixin, View):
         return render(request, 'admin/home.html', context=context)
 
     def post(self, request):
+        # Handle POST request to search for a user
         form = SearchUserForm(request.POST)
         try:
+            # Attempt to retrieve an account based on mobile number
             ac = Account.objects.get(
                 contact_no=form['mobile_no'].value())
             return redirect(f'user/{ac.id}')
@@ -29,7 +33,7 @@ class AdminView(LoginRequiredMixin, AccessMixin, View):
             request.err = "Not found"
         return self.get(request)
 
-
+# Define a ServicesView class with GET method for displaying services page
 class ServicesView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         context = {
@@ -37,20 +41,20 @@ class ServicesView(LoginRequiredMixin, AccessMixin, View):
         }
         return render(request, 'admin/pages/services.html', context=context)
 
-
+# Define a DashboardView class with GET method for displaying admin dashboard
 class DashboardView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
-        # chart days
+        # Chart data for the last 10 days
         days = 10
 
         # Get today's date
         seven_days_ago = timezone.now() - timezone.timedelta(days=days)
 
-        # at index 0: array of date & 1:array of money
+        # Initialize chart data
         chart_data = {'dates': [], 'money_added': [], 'transactions': []}
 
-        # Loop through the last 7 days
-        for i in range(days):
+        # Loop through the last 7 days to collect data
+        for i in range(days+1):
             day = seven_days_ago + timezone.timedelta(days=i)
             day_end = day + timezone.timedelta(days=1)
 
@@ -83,15 +87,20 @@ class DashboardView(LoginRequiredMixin, AccessMixin, View):
         # Check if the total_balance is None (no non-superusers found) and set it to 0 if needed
         total_balance = total_balance if total_balance is not None else 0
 
+        # instant pan api used count
+        today = date.today()
+        count_used_instantpan = InstantPanTransactions.objects.filter(created_on__date=today).first().count if InstantPanTransactions.objects.filter(created_on__date=today) else 0
+
         context = {
             'title': 'Dashboard | Admin',
             'values': chart_data,
             'total_balance': total_balance,
+            'count_used_pan_service':count_used_instantpan,
         }
 
         return render(request, 'admin/pages/dashboard.html', context=context)
 
-
+# Define an AddMoneyView class with GET and POST methods for adding money to a user's account
 class AddMoneyView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         context = {
@@ -101,8 +110,10 @@ class AddMoneyView(LoginRequiredMixin, AccessMixin, View):
         return render(request, 'admin/pages/add_money.html', context=context)
 
     def post(self, request):
+        # Handle POST request to search for a user
         form = SearchUserForm(request.POST)
         try:
+            # Attempt to retrieve an account based on mobile number
             ac = Account.objects.get(
                 contact_no=form['mobile_no'].value())
             return redirect(f'../user/{ac.id}')
@@ -110,11 +121,10 @@ class AddMoneyView(LoginRequiredMixin, AccessMixin, View):
             request.err = "Not found"
         return self.get(request)
 
-
+# Define a UserProfile class with GET and POST methods for displaying and updating user profiles
 class UserProfile(LoginRequiredMixin, AccessMixin, View):
     def get(self, request, pk):
-        ac = Account.objects.get(
-            id=pk)
+        ac = Account.objects.get(id=pk)
         context = {
             'title': 'User Profile',
             'user': ac,
@@ -124,8 +134,7 @@ class UserProfile(LoginRequiredMixin, AccessMixin, View):
 
     def post(self, request, pk):
         form = AddMoneyForm(request.POST)
-        ac = Account.objects.get(
-            id=pk)
+        ac = Account.objects.get(id=pk)
         add_amount = int(form['amount'].value())
         if form.is_valid() and add_amount > 0:
             old_balance = ac.balance
@@ -141,15 +150,14 @@ class UserProfile(LoginRequiredMixin, AccessMixin, View):
             request.err = "Something went wrong"
         return self.get(request, pk)
 
-
+# Define a VoterMakerView class with GET and POST methods for generating voter registrations
 class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         form = VoterRegistrationForm()
         return render(request, 'admin/forms/voter_reg.html', context={'title': 'Voter Generate', 'form': form})
 
     def post(self, request):
-        form = VoterRegistrationForm(
-            request.POST, request.FILES)  # form data from request
+        form = VoterRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             tmp_data = VoterRegistration.objects.get(id=form.instance.id)
@@ -158,17 +166,17 @@ class VoterMakerView(LoginRequiredMixin, AccessMixin, View):
                     'response']['docs'][0]
             except:
                 data = {}
-            data['pic']=tmp_data.photo
-            data['date']= timezone.now().strftime("%d/%m/%Y")
-            data['state_v1']=eth(data.get('state',''))
-            data['address1']=tmp_data.address1
-            data['address1_v1']=eth(tmp_data.address1)
+            data['pic'] = tmp_data.photo
+            data['date'] = timezone.now().strftime("%d/%m/%Y")
+            data['state_v1'] = eth(data.get('state', ''))
+            data['address1'] = tmp_data.address1
+            data['address1_v1'] = eth(tmp_data.address1)
             return render(request, 'admin/pages/latest_voter.html', context={'title': 'Voter', 'data': data})
         else:
             request.err = form.errors
         return self.get(request)
 
-
+# Define an AadharToPanView class with GET and POST methods for converting Aadhar to PAN
 class AadharToPanView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         form = AadharToPanForm()
@@ -178,22 +186,25 @@ class AadharToPanView(LoginRequiredMixin, AccessMixin, View):
         form = AadharToPanForm(request.POST)
         if form.is_valid():
             result = aadhar_to_pan_api(
-                request, form.instance.aadhar_no, "admin_call"+uuid.uuid4().hex[:10])
+                request, form.instance.aadhar_no, "admin_call" + uuid.uuid4().hex[:10])
             request.result = result
-            request.msg = "Pan no. found!"
+            try:
+                request.msg = "Pan no. found!"  if result['status'] else None
+                InstantPanTransactions.create_or_update_transaction()
+            except:
+                request.err = result['message']
         else:
             request.err = "Something went wrong"
-
         return self.get(request)
 
+# Define an OldVoterMakerView class with GET and POST methods for generating old voter registrations
 class OldVoterMakerView(LoginRequiredMixin, AccessMixin, View):
     def get(self, request):
         form = VoterRegistrationOldForm()
         return render(request, 'admin/forms/old_voter_reg.html', context={'title': 'Old Voter Generate', 'form': form})
 
     def post(self, request):
-        form = VoterRegistrationOldForm(
-            request.POST, request.FILES)  # form data from request
+        form = VoterRegistrationOldForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             data = VoterRegistrationOld.objects.get(id=form.instance.id)

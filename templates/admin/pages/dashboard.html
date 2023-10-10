@@ -11,9 +11,12 @@
         {% include 'admin/components/chart.html' %}
 
         <hr>
-        <div class="row">
+        <div class="row gap-5">
             <div class="col-md-3 border p-2 text-center rounded">
                 <h4>Current Total Balance: ₹{{ total_balance }}</h4>
+            </div>
+            <div class="col-md-3 border p-2 text-center rounded">
+                <h4>Instant Pan Count today: {{ count_used_pan_service }}</h4>
             </div>
         </div>
 
