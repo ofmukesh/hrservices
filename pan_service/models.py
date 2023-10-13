@@ -46,6 +46,8 @@ class Utipanpdf(models.Model):
     sign = models.ImageField(blank=False,null=False,upload_to='pan_photos')
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
+    full_name = models.CharField(max_length=255)
+    father_name = models.CharField(max_length=255)
     pan_no = models.CharField(max_length=10, blank=False, null=False)
     aadhar_no = models.CharField(max_length=12, blank=False, null=False)
     date_of_birth = models.DateField()

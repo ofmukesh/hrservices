@@ -73,4 +73,4 @@ class UtiPanPdfForm(forms.ModelForm):
 
     class Meta:
         model = Utipanpdf
-        fields = ['pan_no', 'aadhar_no', 'date_of_birth','photo','sign']
+        fields = ['full_name','father_name','pan_no', 'aadhar_no', 'date_of_birth','photo','sign']
