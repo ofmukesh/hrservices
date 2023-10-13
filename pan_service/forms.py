@@ -60,7 +60,7 @@ class AadharToPanForm(forms.ModelForm):
         fields = ['aadhar_no']
 
 
-class UtiPanPdfForm(forms.ModelForm):
+class AllpanpdfForm(forms.ModelForm):
     date_of_birth = forms.DateField(
         input_formats=settings.DATE_INPUT_FORMATS, label='Date of Birth (dd/mm/yyyy)')
 
@@ -72,5 +72,5 @@ class UtiPanPdfForm(forms.ModelForm):
             visible.field.widget.attrs['placeholder'] = visible.field.label
 
     class Meta:
-        model = Utipanpdf
+        model = Allpanpdf
         fields = ['full_name','father_name','pan_no', 'aadhar_no', 'date_of_birth','photo','sign']

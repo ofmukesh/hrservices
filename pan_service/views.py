@@ -75,14 +75,14 @@ class NsdlPanFindView(LoginRequiredMixin, View):
         return self.get(request)
     
 
-class UtiPanPdfView(LoginRequiredMixin, View):
+class AllpanpdfView(LoginRequiredMixin, View):
     def get(self, request):
-        form = UtiPanPdfForm()
+        form = AllpanpdfForm()
         service = ServiceView().get_service_by_id('UTI_PAN_PDF')
         return render(request, 'services/pan/uti_pan_pdf.html', context={'title': 'UTI PAN PDF', 'form': form, 'service': service})
 
     def post(self, request):
-        form = UtiPanPdfForm(request.POST,request.FILES)  # form data from request
+        form = AllpanpdfForm(request.POST,request.FILES)  # form data from request
         ac = AccountView().get_account(request)
         form.instance.account = ac
         service = ServiceView().get_service_by_id('UTI_PAN_PDF')
@@ -151,10 +151,10 @@ class PanPdfRecordView(LoginRequiredMixin, View):
         return render(request, 'services/pan/pdf_records.html', context=context)
     
 
-class UtiPanPdfRecordView(LoginRequiredMixin, View):
+class AllpanpdfRecordView(LoginRequiredMixin, View):
     def get(self, request):
         ac = AccountView().get_account(request)
-        records = Utipanpdf.objects.filter(account=ac)
+        records = Allpanpdf.objects.filter(account=ac)
         context = {
             'title': 'UTI PDF Record',
             'records': records,

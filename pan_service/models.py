@@ -41,7 +41,7 @@ class AadharToPan(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
 
 
-class Utipanpdf(models.Model):
+class Allpanpdf(models.Model):
     photo = models.ImageField(blank=False,null=False,upload_to='pan_photos')
     sign = models.ImageField(blank=False,null=False,upload_to='pan_photos')
     account = models.ForeignKey(

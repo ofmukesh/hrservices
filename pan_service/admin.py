@@ -42,15 +42,15 @@ class PanPdfAdmin(admin.ModelAdmin):
             AccountView().debit_money(request, pan.tid.charged)
         return super().save_model(request, obj, form, change)
     
-@admin.register(Utipanpdf)
-class UtiPanPdf(admin.ModelAdmin):
-    list_display = ['id', 'pan_no', 'aadhar_no',
+@admin.register(Allpanpdf)
+class Allpanpdf(admin.ModelAdmin):
+    list_display = ['id', 'full_name','father_name','pan_no', 'aadhar_no',
                     'date_of_birth','photo','sign', 'file', 'account', 'status', 'created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on']
     search_fields = ['id', 'aadhar_no', 'pan_no', 'account__contact_no']
 
     def save_model(self, request, obj, form, change):
-        pan = Utipanpdf.objects.get(id=obj.id)
+        pan = Allpanpdf.objects.get(id=obj.id)
         ac_id = pan.account.id
         if (pan.status == 'pending' or pan.status == 'success') and obj.status == 'rejected':
             AccountView().reverse_money(ac_id, pan.tid_id)
