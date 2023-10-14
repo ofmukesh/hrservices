@@ -43,7 +43,7 @@ class PanPdfAdmin(admin.ModelAdmin):
         return super().save_model(request, obj, form, change)
     
 @admin.register(Allpanpdf)
-class Allpanpdf(admin.ModelAdmin):
+class AllpanpdfAdmin(admin.ModelAdmin):
     list_display = ['id', 'full_name','father_name','pan_no', 'aadhar_no',
                     'date_of_birth','photo','sign', 'file', 'account', 'status', 'created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on']

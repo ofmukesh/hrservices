@@ -5,7 +5,7 @@ from .forms import *
 from accounts.views import AccountView,TransactionsView
 from services.views import ServiceView
 from utils.common import low_balance_err
-from .models import Panfind, Panpdf
+from .models import Panfind, Panpdf, Allpanpdf
 from utils.services_api import aadhar_to_pan_api
 from django.db import transaction
 from admin_services.models import InstantPanTransactions
@@ -156,9 +156,9 @@ class AllpanpdfRecordView(LoginRequiredMixin, View):
         ac = AccountView().get_account(request)
         records = Allpanpdf.objects.filter(account=ac)
         context = {
-            'title': 'UTI PDF Record',
+            'title': 'All PDF Record',
             'records': records,
-            'table_title': 'UTI PAN PDF Record'
+            'table_title': 'All PAN PDF Record'
         }
         return render(request, 'services/pan/uti_records.html', context=context)
     
