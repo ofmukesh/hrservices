@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Dlpdf, Dlfind
+from .models import Dlpdf, Dlfind,OtherDlpdf
 from accounts.views import AccountView
 
 
@@ -30,6 +30,22 @@ class DlPdfAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         dl = Dlpdf.objects.get(id=obj.id)
+        ac_id = dl.account.id
+        if (dl.status == 'pending' or dl.status == 'success') and obj.status == 'rejected':
+            AccountView().reverse_money(ac_id, dl.tid_id)
+        if dl.status == 'rejected' and obj.status == 'success':
+            AccountView().debit_money(request, dl.tid.charged)
+        return super().save_model(request, obj, form, change)
+    
+@admin.register(OtherDlpdf)
+class OtherStateDlPdfAdmin(admin.ModelAdmin):
+    list_display = ['id', 'dl_no', 'state',
+                    'date_of_birth', 'file', 'account', 'status', 'created_on', 'updated_on']
+    list_filter = ['created_on', 'updated_on', 'status']
+    search_fields = ['id', 'state', 'dl_no', 'account__contact_no']
+
+    def save_model(self, request, obj, form, change):
+        dl = OtherDlpdf.objects.get(id=obj.id)
         ac_id = dl.account.id
         if (dl.status == 'pending' or dl.status == 'success') and obj.status == 'rejected':
             AccountView().reverse_money(ac_id, dl.tid_id)
