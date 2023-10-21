@@ -27,7 +27,7 @@ def voter_api(request, epic_no):
     api_key = ServiceKeys.objects.get(id='VOTER_KEY').api_key
 
     # API URL
-    api_url = f"https://api.gtelapi.com/voterapi/monthly.php?mobile=7056757439&apikey={api_key}&epicno={epic_no}"
+    api_url = f"https://neofind.in/admin/api/voter_data.php?api_key={api_key}&epicno={epic_no}"
 
     # Make the API call
     response = requests.post(api_url)
