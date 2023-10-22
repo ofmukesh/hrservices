@@ -6,7 +6,6 @@ class Voterpdf(models.Model):
     account = models.ForeignKey(
         'accounts.account', on_delete=models.CASCADE, editable=False)
     epic_no = models.CharField(max_length=20, blank=False, null=False)
-    name_as_voter = models.CharField(max_length=255, blank=False, null=False)
     voter_type = models.CharField(
         max_length=255, choices=VoterTypeChoices, default=1, blank=False, null=False)
     file = models.FileField(upload_to='voter_files',blank=True,null=True)

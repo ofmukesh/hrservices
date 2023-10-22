@@ -5,10 +5,10 @@ from accounts.views import AccountView
 
 @admin.register(Voterpdf)
 class VoterPdfAdmin(admin.ModelAdmin):
-    list_display = ['id', 'epic_no', 'name_as_voter',
+    list_display = ['id', 'epic_no',
                     'voter_type', 'file','account', 'status', 'created_on', 'updated_on']
     list_filter = ['created_on', 'updated_on', 'status', 'voter_type']
-    search_fields = ['id', 'name_as_voter', 'epic_no', 'account__contact_no']
+    search_fields = ['id', 'epic_no', 'account__contact_no']
 
     def save_model(self, request, obj, form, change):
         voter = Voterpdf.objects.get(id=obj.id)
