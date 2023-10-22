@@ -55,23 +55,16 @@
 
     <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            DL PDF
+            DRIVING LICENSE
+            <img height="20px" width="20px" class="new_service_icon" src="{% static 'images/new_icon.png' %}" alt="">
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'pdf_dl' %}>Haryana New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'dl_pdf_records' %}>Haryana PDF List</a></li>
-            <li><a class="dropdown-item" href={% url 'other_dl_pdf' %}>Other State New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'other_dl_records' %}>Other State List</a></li>
-        </ul>
-    </div>
-
-    <div class="items mt-1">
-        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            FIND DL
-        </button>
-        <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'find_dl' %}>New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'dl_records' %}>DL List</a></li>
+            <li><a class="dropdown-item" href={% url 'pdf_dl' %}>1️⃣ Haryana DL PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_pdf_records' %}>👉 Haryana DL PDF List</a></li>
+            <li><a class="dropdown-item" href={% url 'other_dl_pdf' %}>2️⃣ Other All State DL PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'other_dl_records' %}>👉 Other All State DL PDF LIST</a></li>
+            <li><a class="dropdown-item" href={% url 'find_dl' %}>3️⃣ Find DL Number</a></li>
+            <li><a class="dropdown-item" href={% url 'dl_records' %}>👉 Find DL Number List</a></li>
         </ul>
     </div>
 
@@ -87,31 +80,16 @@
 
     <div class="items mt-1">
         <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            AADHAR NO TO AADHAR PDF
+            AADHAAR SERVICE
+            <img height="20px" width="20px" class="new_service_icon" src="{% static 'images/new_icon.png' %}" alt="">
         </button>
         <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'aadhar_no_to_pdf' %}>New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'aadhar_no_to_pdf_records' %}>PDF List</a></li>
-        </ul>
-    </div>
-
-    <div class="items mt-1">
-        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            EID to Aadhar no.
-        </button>
-        <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'find_aadhar' %}>New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'aadhar_records' %}>Aadhar List</a></li>
-        </ul>
-    </div>
-
-    <div class="items mt-1">
-        <button class="btn text-light form-control" data-bs-toggle="dropdown" aria-expanded="false">
-            EID to Aadhar PDF
-        </button>
-        <ul class="dropdown-menu dropdown-menu-light form-control">
-            <li><a class="dropdown-item" href={% url 'pdf_aadhar' %}>New apply</a></li>
-            <li><a class="dropdown-item" href={% url 'aadhar_pdf_records' %}>PDF List</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_no_to_pdf' %}>1️⃣ Aadhar no. to Aadhar PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_no_to_pdf_records' %}>👉 Aadhar no. to Aadhar PDF List</a></li>
+            <li><a class="dropdown-item" href={% url 'find_aadhar' %}>2️⃣ EID to Aadhar no.</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_records' %}>👉 EID to Aadhar no. List</a></li>
+            <li><a class="dropdown-item" href={% url 'pdf_aadhar' %}>3️⃣ EID to Aadhar PDF</a></li>
+            <li><a class="dropdown-item" href={% url 'aadhar_pdf_records' %}>👉 EID to Aadhar PDF List</a></li>
         </ul>
     </div>
 
