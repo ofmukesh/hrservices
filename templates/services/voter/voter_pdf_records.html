@@ -10,7 +10,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">EPIC No.</th>
-                <th scope="col">Name as on Voter</th>
                 <th scope="col">Voter Generation</th>
                 <th scope="col">PDF</th>
                 <th scope="col">Status</th>
@@ -21,7 +20,6 @@
             <tr>
                 <th scope="row">{{record.id}}</th>
                 <td>{{record.epic_no}}</td>
-                <td>{{record.name_as_voter}}</td>
                 <td>{{record.voter_type}}</td>
                 <td>{% if record.file%}
                     <a target="_blank" href="/media/{{record.file}}">download</a>
