@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import Account, Transactions
 from rest_framework.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import login
 from .forms import SignupForm
+from django.contrib.auth.models import User
 
 
 class AccountView():
@@ -69,14 +69,18 @@ class UserTransactionsHistoryView(LoginRequiredMixin, View):
 
 
 def signup(request):
+    msg = ""
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
             Account.objects.create(user=user, balance=0,
                                    contact_no=user.username).save()
-            login(request, user)
-            return redirect('home')
+            user = User.objects.get(username=user.username)
+            user.is_active = False
+            user.save()
+            print(user.is_active)
+            msg = "Your account has successfully registered. To activate your account, kindly contact to site admins."
     else:
         form = SignupForm()
-    return render(request, 'pages/sign_up.html', {'form': form})
+    return render(request, 'pages/sign_up.html', {'form': form, 'msg': msg})

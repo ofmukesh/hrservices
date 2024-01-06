@@ -9,11 +9,15 @@
 <form class="form_main mt-3 row justify-center" method="post">
     {% csrf_token %}
     <div class="col-md-5 card mx-auto mt-5">
+        <center>
+            <b class="text-success">{{msg}}</b>
+        </center>
         <div class="card-body">
             <center>
                 <h1>Sign Up</h1>
             </center>
             {{ form.as_p }}
+
             <center>
                 <button class="btn btn-primary my-2" type="submit">Sign up</button>
                 <p>Already have account? <a href="/auth/login">Login</a></p>
