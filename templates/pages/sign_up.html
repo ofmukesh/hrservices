@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+</head>
+<form class="form_main mt-3 row justify-center" method="post">
+    {% csrf_token %}
+    <div class="col-md-5 card mx-auto mt-5">
+        <div class="card-body">
+            <center>
+                <h1>Sign Up</h1>
+            </center>
+            {{ form.as_p }}
+            <center>
+                <button class="btn btn-primary my-2" type="submit">Sign up</button>
+                <p>Already have account? <a href="/auth/login">Login</a></p>
+            </center>
+        </div>
+    </div>
+</form>
+{%endblock%}

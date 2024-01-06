@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from home.views import HomeView
 from django.contrib.auth.views import LoginView
-from accounts.views import ProfileView, WalletView,UserTransactionsHistoryView
+from accounts.views import ProfileView, WalletView, UserTransactionsHistoryView, signup
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('transactions/', UserTransactionsHistoryView.as_view(), name='transactions'),
     path('auth/login/', LoginView.as_view(template_name="pages/login.html",
                                           redirect_authenticated_user=True), name='login'),
+    path('auth/signup/', signup, name='signup'),
     path('auth/', include('rest_framework.urls')),
 
     # admin paths
