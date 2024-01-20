@@ -11,7 +11,7 @@ StatusChoices = [
 VoterTypeChoices = [
     ('new',1),
     ('old new',2),
-    # ('old',3),
+    ('old',3),
     ('older',4),
 ]
 
